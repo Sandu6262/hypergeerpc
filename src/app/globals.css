@@ -753,16 +753,73 @@ body {
 @media (max-width: 900px) {
   .builder-layout { grid-template-columns: 1fr; }
   .build-summary { position: static; }
+  .pcs-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
 }
+
 @media (max-width: 700px) {
-  .navbar { padding: 12px 18px; }
+  /* Navbar */
+  .navbar { padding: 10px 16px; }
   .nav-links { display: none; }
-  .hero { padding: 90px 20px 50px; }
-  .hero-title { font-size: 44px; }
-  .hero-sub { font-size: 22px; }
-  .container { padding: 0 18px; }
-  .section-title { font-size: 32px; }
+  .logo-text { font-size: 18px; letter-spacing: 2px; }
+  .nav-logo-img { height: 36px; }
+  .cart-btn { padding: 8px 16px; font-size: 14px; }
+
+  /* Hero */
+  .hero { padding: 80px 16px 40px; align-items: flex-start; }
+  .hero-content { max-width: 100%; }
+  .hero-title { font-size: 38px; line-height: 1.1; }
+  .hero-sub { font-size: 20px; }
+  .hero-desc { font-size: 15px; margin-bottom: 24px; }
+  .hero-badge { font-size: 12px; padding: 5px 14px; }
+  .hero-btns { flex-direction: column; gap: 12px; }
+  .hero-btns .btn-primary,
+  .hero-btns .btn-secondary { width: 100%; text-align: center; padding: 14px 20px; }
+  .hero-stats { gap: 16px; }
+  .stat-num { font-size: 22px; }
+  .stat-lbl { font-size: 11px; }
+
+  /* Container & Sections */
+  .container { padding: 0 16px; }
+  .section-title { font-size: 28px; }
+  .section-desc { font-size: 15px; }
+  .filters-section { padding: 50px 0 20px; }
+  .filter-btn { padding: 10px 18px; font-size: 14px; }
+
+  /* PC Grid - 1 coloana */
+  .pcs-grid { grid-template-columns: 1fr; gap: 18px; }
+  .pcs-grid-section { padding: 20px 0 50px; }
+  .pc-card { padding: 18px; }
+  .pc-image { height: 160px; }
+  .pc-name { font-size: 15px; }
+  .pc-badge { font-size: 10px; padding: 4px 10px; }
+  .pc-price { font-size: 22px; }
+  .pc-specs { margin: 10px 0; }
+  .pc-specs li { font-size: 13px; padding: 5px 0; }
+
+  /* Builder */
+  .builder-section { padding: 60px 0; }
+  .comp-options { grid-template-columns: 1fr; }
+  .budget-slider { padding: 0 4px; }
+  .builder-tabs { gap: 6px; }
+  .builder-tab { padding: 8px 14px; font-size: 13px; }
+
+  /* Cart */
   .cart-sidebar { width: 100%; right: -100%; }
   .cart-sidebar.open { right: 0; }
-  .comp-options { grid-template-columns: 1fr; }
+
+  /* Contact */
+  .contact-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .contact-card { padding: 18px 12px; }
+  .contact-card p { font-size: 13px; }
+
+  /* Footer */
+  .footer-content { flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+  .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+
+  /* Toast */
+  .toast { width: 90%; white-space: normal; text-align: center; font-size: 14px; }
+
+  /* Stars & particles - reduce pe mobile */
+  .bg-particles-full div { display: none; }
+  .bg-particles-full div:nth-child(-n+30) { display: block; }
 }
