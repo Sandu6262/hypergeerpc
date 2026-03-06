@@ -34,10 +34,6 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-rajdhani, 'Rajdhani', 'Segoe UI', sans-serif);
   background: var(--bg);
-  background-image:
-    linear-gradient(rgba(0,255,208,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,208,.03) 1px, transparent 1px);
-  background-size: 55px 55px;
   color: var(--text);
   overflow-x: hidden;
   min-height: 100vh;
@@ -260,14 +256,15 @@ body {
   top: 50%;
   transform: translateY(-50%);
   font-family: var(--font-orbitron, 'Orbitron', monospace);
-  font-size: clamp(120px, 22vw, 260px);
+  font-size: clamp(140px, 24vw, 300px);
   font-weight: 900;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(0,255,208,.06);
+  -webkit-text-stroke: 2px rgba(0,255,208,.18);
   pointer-events: none;
   user-select: none;
   letter-spacing: -8px;
   white-space: nowrap;
+  text-shadow: 0 0 80px rgba(0,255,208,.08), 0 0 160px rgba(0,255,208,.05);
 }
 .hero-content { max-width: 720px; animation: fadeInUp .8s ease-out; }
 .hero-terminal {
