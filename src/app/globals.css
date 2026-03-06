@@ -136,31 +136,91 @@ body {
   overflow: hidden;
 }
 
-/* ===== CIRCUIT BOARD BACKGROUND ===== */
+/* ===== ORBIT BACKGROUND ===== */
+@keyframes orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes orbit-rev { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+@keyframes core-pulse {
+  0%, 100% { box-shadow: 0 0 20px 4px rgba(0,255,208,.6), 0 0 60px 16px rgba(0,255,208,.2); }
+  50%       { box-shadow: 0 0 36px 8px rgba(0,255,208,.9), 0 0 100px 30px rgba(0,255,208,.3); }
+}
+@keyframes glow-breathe {
+  0%, 100% { opacity: .12; transform: translate(-50%,-50%) scale(1); }
+  50%       { opacity: .22; transform: translate(-50%,-50%) scale(1.15); }
+}
 .circuit-bg {
   position: fixed;
-  right: -40px;
+  right: 4%;
   top: 50%;
   transform: translateY(-50%);
-  width: 520px;
-  height: 650px;
-  opacity: 0.22;
+  width: 500px;
+  height: 500px;
   z-index: 0;
   pointer-events: none;
 }
-.circuit-svg { width: 100%; height: 100%; }
-@keyframes cpulse-anim {
-  0%   { stroke-dashoffset: 500; opacity: 0; }
-  5%   { opacity: 1; }
-  95%  { opacity: 1; }
-  100% { stroke-dashoffset: 0;   opacity: 0; }
+.orb-core {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: core-pulse 2.4s ease-in-out infinite;
 }
-.cpulse { animation: cpulse-anim 3s linear infinite; }
-.cpulse-1 { animation-duration: 2.8s; animation-delay: 0s; }
-.cpulse-2 { animation-duration: 2.2s; animation-delay: -0.8s; }
-.cpulse-3 { animation-duration: 3.2s; animation-delay: -1.5s; }
-.cpulse-4 { animation-duration: 2.5s; animation-delay: -0.4s; }
-.cpulse-5 { animation-duration: 3.0s; animation-delay: -2.0s; }
+.orb-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,255,208,.18) 0%, transparent 70%);
+  animation: glow-breathe 3s ease-in-out infinite;
+}
+.orb-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(0,255,208,.2);
+}
+.orb-ring-1 {
+  width: 180px; height: 180px;
+  margin: -90px 0 0 -90px;
+  animation: orbit 6s linear infinite;
+  transform-style: preserve-3d;
+  border-color: rgba(0,255,208,.25);
+}
+.orb-ring-2 {
+  width: 280px; height: 280px;
+  margin: -140px 0 0 -140px;
+  animation: orbit-rev 10s linear infinite;
+  transform: rotateX(65deg);
+  border-color: rgba(123,47,255,.3);
+}
+.orb-ring-3 {
+  width: 380px; height: 380px;
+  margin: -190px 0 0 -190px;
+  animation: orbit 14s linear infinite;
+  transform: rotateX(75deg) rotateY(20deg);
+  border-color: rgba(0,255,208,.15);
+}
+.orb-ring-4 {
+  width: 470px; height: 470px;
+  margin: -235px 0 0 -235px;
+  animation: orbit-rev 20s linear infinite;
+  transform: rotateX(55deg) rotateY(-15deg);
+  border-color: rgba(255,45,85,.12);
+}
+.orb-dot {
+  position: absolute;
+  top: -5px; left: 50%;
+  transform: translateX(-50%);
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 10px 3px rgba(0,255,208,.7);
+}
+.orb-ring-2 .orb-dot { background: var(--volt-l); box-shadow: 0 0 10px 3px rgba(123,47,255,.7); width: 8px; height: 8px; }
+.orb-ring-3 .orb-dot { background: var(--teal-l); box-shadow: 0 0 8px 2px rgba(0,255,208,.5); width: 7px; height: 7px; }
+.orb-ring-4 .orb-dot { background: var(--red); box-shadow: 0 0 8px 2px rgba(255,45,85,.6); width: 7px; height: 7px; }
 @media (max-width: 700px) { .circuit-bg { display: none; } }
 
 /* ===== NAVBAR ===== */
@@ -261,7 +321,7 @@ body {
 .hero::before {
   content: 'GAMING';
   position: absolute;
-  right: -18%;
+  left: 38%;
   top: 50%;
   transform: translateY(-50%);
   font-family: var(--font-orbitron, 'Orbitron', monospace);
