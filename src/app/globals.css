@@ -137,37 +137,73 @@ body {
 }
 
 /* ===== RGB KEYBOARD BACKGROUND ===== */
-/* ===== KEYBOARD BACKGROUND ===== */
+/* ===== GAMING SETUP BACKGROUND ===== */
 @keyframes kb-wave {
-  0%   { stroke: rgba(0,255,208,.5);  fill: rgba(0,255,208,.07);  }
-  40%  { stroke: rgba(123,47,255,.5); fill: rgba(123,47,255,.07); }
-  70%  { stroke: rgba(255,45,85,.45); fill: rgba(255,45,85,.06);  }
-  100% { stroke: rgba(0,255,208,.5);  fill: rgba(0,255,208,.07);  }
+  0%   { stroke: rgba(0,255,208,.5);  fill: rgba(0,255,208,.06);  }
+  40%  { stroke: rgba(123,47,255,.5); fill: rgba(123,47,255,.06); }
+  70%  { stroke: rgba(255,45,85,.45); fill: rgba(255,45,85,.05);  }
+  100% { stroke: rgba(0,255,208,.5);  fill: rgba(0,255,208,.06);  }
 }
 @keyframes kb-glow-wave {
-  0%   { filter: drop-shadow(0 0 4px rgba(0,255,208,.7));  }
-  40%  { filter: drop-shadow(0 0 4px rgba(123,47,255,.7)); }
-  70%  { filter: drop-shadow(0 0 4px rgba(255,45,85,.6));  }
-  100% { filter: drop-shadow(0 0 4px rgba(0,255,208,.7));  }
+  0%   { filter: drop-shadow(0 0 4px rgba(0,255,208,.65));  }
+  40%  { filter: drop-shadow(0 0 4px rgba(123,47,255,.65)); }
+  70%  { filter: drop-shadow(0 0 4px rgba(255,45,85,.6));   }
+  100% { filter: drop-shadow(0 0 4px rgba(0,255,208,.65));  }
 }
 @keyframes kb-label-wave {
-  0%   { fill: rgba(0,255,208,.7);  }
-  40%  { fill: rgba(168,85,255,.7); }
-  70%  { fill: rgba(255,80,110,.65);}
-  100% { fill: rgba(0,255,208,.7);  }
+  0%   { fill: rgba(0,255,208,.75);  }
+  40%  { fill: rgba(168,85,255,.75); }
+  70%  { fill: rgba(255,80,110,.7);  }
+  100% { fill: rgba(0,255,208,.75);  }
 }
-.kb-key   { animation: kb-wave 4s linear infinite; }
-.kb-glow  { animation: kb-glow-wave 4s linear infinite; }
-.kb-label { animation: kb-label-wave 4s linear infinite; }
+@keyframes screen-glow {
+  0%,100% { fill: rgba(0,255,208,.06); }
+  50%     { fill: rgba(0,255,208,.14); }
+}
+@keyframes scan {
+  0%   { y: 18px; opacity: .6; }
+  100% { y: 192px; opacity: 0; }
+}
+@keyframes led-pulse {
+  0%,100% { opacity: .9; }
+  50%     { opacity: .3; }
+}
+@keyframes monitor-rgb {
+  0%   { stroke: rgba(0,255,208,.5);  }
+  33%  { stroke: rgba(123,47,255,.5); }
+  66%  { stroke: rgba(255,45,85,.45); }
+  100% { stroke: rgba(0,255,208,.5);  }
+}
+@keyframes hud-pulse { 0%,100%{opacity:.8} 50%{opacity:1} }
+@keyframes mouse-rgb {
+  0%   { stroke: rgba(0,255,208,.5);  }
+  33%  { stroke: rgba(123,47,255,.5); }
+  66%  { stroke: rgba(255,45,85,.45); }
+  100% { stroke: rgba(0,255,208,.5);  }
+}
+.kb-key        { animation: kb-wave 4s linear infinite; }
+.kb-glow       { animation: kb-glow-wave 4s linear infinite; }
+.kb-label      { animation: kb-label-wave 4s linear infinite; }
+.screen-bg     { animation: screen-glow 3s ease-in-out infinite; }
+.scan-line     { animation: scan 2.5s linear infinite; }
+.power-led     { animation: led-pulse 1.5s ease-in-out infinite; }
+.monitor-glow  { animation: monitor-rgb 4s linear infinite; stroke-width: 12; opacity: .5; filter: blur(6px); }
+.mouse-glow    { animation: mouse-rgb 4s linear infinite; stroke-width: 8; opacity: .6; filter: blur(4px); }
+.scroll-wheel  { animation: led-pulse 2s ease-in-out infinite; }
+.fps-text      { animation: led-pulse 2s ease-in-out infinite; }
+.hud-fill      { animation: hud-pulse 2s ease-in-out infinite; }
+.hud-fill-1    { animation-delay: 0s; }
+.hud-fill-2    { animation-delay: .4s; }
+.hud-fill-3    { animation-delay: .8s; }
 
 .fans-bg {
   position: fixed;
-  right: 2%;
+  right: 1%;
   top: 50%;
-  transform: translateY(-50%) perspective(1000px) rotateX(10deg) rotateY(-8deg);
-  width: 580px;
-  height: 240px;
-  opacity: 0.55;
+  transform: translateY(-50%);
+  width: 600px;
+  height: 510px;
+  opacity: 0.5;
   z-index: 0;
   pointer-events: none;
 }
