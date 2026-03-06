@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "deploy": "git add . && git commit -m \"update\" && git push origin clean:master"
   },
   "dependencies": {
     "lucide-react": "^0.577.0",
