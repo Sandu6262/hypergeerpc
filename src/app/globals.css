@@ -321,19 +321,19 @@ body {
 .hero::before {
   content: 'GAMING';
   position: absolute;
-  left: 38%;
+  right: 5%;
   top: 50%;
   transform: translateY(-50%);
   font-family: var(--font-orbitron, 'Orbitron', monospace);
-  font-size: clamp(160px, 26vw, 320px);
+  font-size: clamp(60px, 7vw, 96px);
   font-weight: 900;
   color: transparent;
-  -webkit-text-stroke: 2px rgba(0,255,208,.22);
+  -webkit-text-stroke: 2px rgba(0,255,208,.25);
   pointer-events: none;
   user-select: none;
-  letter-spacing: -6px;
+  letter-spacing: 6px;
   white-space: nowrap;
-  text-shadow: 0 0 100px rgba(0,255,208,.12), 0 0 200px rgba(0,255,208,.06);
+  text-shadow: 0 0 40px rgba(0,255,208,.12);
 }
 .hero-content { max-width: 720px; animation: fadeInUp .8s ease-out; }
 .hero-terminal {
