@@ -4,7 +4,7 @@ import './globals.css'
 import { StoreProvider } from '@/store/StoreContext'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import FansBg from '@/components/background/FansBg'
+import CircuitBg from '@/components/background/CircuitBg'
 import BgParticles from '@/components/background/BgParticles'
 import BgStars from '@/components/background/BgStars'
 import CartSidebar from '@/components/cart/CartSidebar'
@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StoreProvider>
           <BgParticles />
           <BgStars />
-          <FansBg />
+          <CircuitBg />
           <Navbar />
           <CartSidebar />
           {children}
