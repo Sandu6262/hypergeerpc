@@ -1019,7 +1019,7 @@ body {
   .fans-bg {
     width: 96vw;
     height: calc(96vw * 470 / 520);
-    left: 50%;
+    left: 42%;
     top: 50%;
     transform: translate(-50%, -50%);
     opacity: 0.7;
