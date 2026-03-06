@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="fg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#BF00FF"/>
+      <stop offset="100%" stop-color="#FF1493"/>
+    </linearGradient>
+    <filter id="gw">
+      <feGaussianBlur stdDeviation="1.8" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="48" height="48" rx="10" fill="#08021a"/>
+  <polygon points="24,3 40,12 40,30 24,39 8,30 8,12"
+           fill="rgba(14,4,28,0.97)" stroke="url(#fg)" stroke-width="2" filter="url(#gw)"/>
+  <rect x="17" y="16" width="14" height="14" rx="2.5"
+        fill="rgba(45,6,75,0.92)" stroke="url(#fg)" stroke-width="1.5"/>
+  <circle cx="24" cy="23" r="3.5" fill="url(#fg)" filter="url(#gw)"/>
+  <circle cx="24" cy="23" r="1.4" fill="rgba(248,215,255,1)"/>
+  <line x1="24" y1="16" x2="24" y2="9"  stroke="url(#fg)" stroke-width="1.5"/>
+  <circle cx="24" cy="8.5" r="2" fill="#BF00FF"/>
+  <line x1="31" y1="23" x2="38" y2="23" stroke="url(#fg)" stroke-width="1.5"/>
+  <circle cx="38.5" cy="23" r="2" fill="#FF1493"/>
+  <line x1="24" y1="30" x2="24" y2="37" stroke="url(#fg)" stroke-width="1.5"/>
+  <circle cx="24" cy="37.5" r="2" fill="#BF00FF"/>
+  <line x1="17" y1="23" x2="10" y2="23" stroke="url(#fg)" stroke-width="1.5"/>
+  <circle cx="9.5" cy="23" r="2" fill="#FF1493"/>
+</svg>
