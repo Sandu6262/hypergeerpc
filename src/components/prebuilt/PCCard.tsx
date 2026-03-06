@@ -47,6 +47,8 @@ export default function PCCard({ pc, highlight, index }: Props) {
       className={`pc-card${highlight ? ' highlight' : ''}`}
       style={{ animationDelay: `${index * 0.08}s` }}
     >
+      <span className="corner tl" aria-hidden="true" />
+      <span className="corner br" aria-hidden="true" />
       <div className="pc-image">
         {!imgError ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -63,6 +65,7 @@ export default function PCCard({ pc, highlight, index }: Props) {
           </span>
         )}
       </div>
+      <div className="pc-card-body">
       <div className="pc-name-row">
         <div className="pc-name">{pc.name}</div>
         <span className={`pc-badge badge-${pc.badge}`}>{pc.badgeText}</span>
@@ -86,6 +89,7 @@ export default function PCCard({ pc, highlight, index }: Props) {
           <ShoppingCart size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
           Adauga
         </button>
+      </div>
       </div>
     </div>
   )

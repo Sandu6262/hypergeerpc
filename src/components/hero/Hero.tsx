@@ -5,8 +5,11 @@ export default function Hero() {
   return (
     <section className="hero">
       <div className="hero-content">
+        <div className="hero-terminal">
+          SYSTEM ONLINE — HYPERGEERPC v2.0 <span className="hero-terminal-cursor" />
+        </div>
         <div className="hero-badge">
-          <Flame size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
+          <Flame size={13} />
           Cele mai tari PC-uri din Moldova
         </div>
         <h1 className="hero-title">
