@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="hero-content">
         <div className="hero-badge">
           <Flame size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
-          Cele mai tari PC-uri din Romania
+          Cele mai tari PC-uri din Moldova
         </div>
         <h1 className="hero-title">
           <span className="rgb-text">HypergeeRPC</span>

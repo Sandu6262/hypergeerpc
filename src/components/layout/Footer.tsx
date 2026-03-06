@@ -19,7 +19,7 @@ export default function Footer() {
           <p>
             &copy; 2025 HypergeeRPC. Toate drepturile rezervate. Facut cu{' '}
             <Heart size={13} fill="#8B00FF" color="#8B00FF" style={{ display: 'inline', verticalAlign: 'middle' }} />
-            {' '}in Romania.
+            {' '}in Moldova.
           </p>
         </div>
       </div>
