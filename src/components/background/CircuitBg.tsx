@@ -1,108 +1,103 @@
+'use client'
+
+const CORES = Array.from({ length: 16 }, (_, i) => i)
+const DELAYS = [0, 0.7, 1.4, 2.1, 0.3, 1.1, 1.8, 0.5, 1.6, 0.2, 0.9, 1.3, 2.4, 0.6, 1.9, 0.4]
+
 export default function CircuitBg() {
   return (
     <div className="circuit-bg" aria-hidden="true">
-      <svg viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <filter id="tglow">
-            <feGaussianBlur stdDeviation="4" result="b"/>
+          <filter id="die-glow">
+            <feGaussianBlur stdDeviation="3" result="b"/>
             <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
-          <filter id="tglow-soft">
-            <feGaussianBlur stdDeviation="2" result="b"/>
+          <filter id="core-glow">
+            <feGaussianBlur stdDeviation="5" result="b"/>
             <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
         </defs>
 
-        {/* ── RADIATOR (top) ───────────────────────── */}
-        <rect x="60" y="20" width="280" height="90" rx="6"
-          fill="rgba(30,30,50,.6)" stroke="#2a2a4a" strokeWidth="1.5"/>
-        {[0,1,2,3,4].map(i => (
-          <line key={i} x1="60" y1={33 + i*16} x2="340" y2={33 + i*16}
-            stroke="#1a1a30" strokeWidth="10" strokeLinecap="square"/>
-        ))}
-        {[0,1,2,3,4].map(i => (
-          <line key={i} x1="60" y1={33 + i*16} x2="340" y2={33 + i*16}
-            strokeWidth="5" strokeLinecap="square"
-            className={`tube-inner rgb-tube rgb-tube-${(i%3)+1}`}/>
-        ))}
-        <text x="200" y="122" textAnchor="middle" fontSize="7"
-          fill="#555" fontFamily="monospace" letterSpacing="3">RADIATOR</text>
+        {/* ── DIE OUTER SHELL ─────────────────────── */}
+        <rect x="20" y="20" width="320" height="320" rx="6"
+          fill="rgba(4,4,16,.95)" stroke="rgba(0,255,208,.35)" strokeWidth="1.5"
+          filter="url(#die-glow)" />
+        <rect x="24" y="24" width="312" height="312" rx="4"
+          fill="none" stroke="rgba(0,255,208,.1)" strokeWidth=".5"/>
 
-        {/* ── CPU BLOCK (left-center) ───────────────── */}
-        <rect x="50" y="220" width="90" height="70" rx="5"
-          fill="rgba(20,20,40,.8)" stroke="#2a2a4a" strokeWidth="1.5"/>
-        {[0,1,2,3,4,5].map(i => (
-          <line key={i} x1="54" y1={228 + i*10} x2="136" y2={228 + i*10}
-            stroke="#1a1a30" strokeWidth="5" strokeLinecap="square"/>
+        {/* ── L3 CACHE (left strip) ───────────────── */}
+        {[0,1,2,3].map(i => (
+          <rect key={i} x="28" y={30 + i * 72} width="36" height="62" rx="2"
+            fill="rgba(0,255,208,.05)" stroke="rgba(0,255,208,.25)" strokeWidth=".8"
+            className="cache-block"/>
         ))}
-        {[0,1,2,3,4,5].map(i => (
-          <line key={i} x1="54" y1={228 + i*10} x2="136" y2={228 + i*10}
-            strokeWidth="2.5" strokeLinecap="square"
-            className={`tube-inner rgb-tube rgb-tube-${(i%3)+1}`}/>
+        <text x="46" y="308" textAnchor="middle" fontSize="6"
+          fill="rgba(0,255,208,.4)" fontFamily="monospace" letterSpacing="1">L3$</text>
+
+        {/* ── L3 CACHE (right strip) ──────────────── */}
+        {[0,1,2,3].map(i => (
+          <rect key={i} x="296" y={30 + i * 72} width="36" height="62" rx="2"
+            fill="rgba(123,47,255,.05)" stroke="rgba(123,47,255,.25)" strokeWidth=".8"
+            className="cache-block-v"/>
         ))}
-        <text x="95" y="302" textAnchor="middle" fontSize="7"
-          fill="#555" fontFamily="monospace" letterSpacing="2">CPU</text>
 
-        {/* ── GPU BLOCK (right-center) ─────────────── */}
-        <rect x="260" y="200" width="110" height="120" rx="5"
-          fill="rgba(20,20,40,.8)" stroke="#2a2a4a" strokeWidth="1.5"/>
-        {[0,1,2,3,4,5,6].map(i => (
-          <line key={i} x1="265" y1={212 + i*14} x2="365" y2={212 + i*14}
-            stroke="#1a1a30" strokeWidth="7" strokeLinecap="square"/>
+        {/* ── MEMORY CONTROLLER (bottom) ──────────── */}
+        {[0,1,2,3].map(i => (
+          <rect key={i} x={74 + i * 54} y="314" width="44" height="22" rx="2"
+            fill="rgba(0,170,255,.05)" stroke="rgba(0,170,255,.25)" strokeWidth=".8"
+            className="mc-block"/>
         ))}
-        {[0,1,2,3,4,5,6].map(i => (
-          <line key={i} x1="265" y1={212 + i*14} x2="365" y2={212 + i*14}
-            strokeWidth="3.5" strokeLinecap="square"
-            className={`tube-inner rgb-tube rgb-tube-${(i%3)+1}`}/>
+        <text x="180" y="325" textAnchor="middle" fontSize="6"
+          fill="rgba(0,170,255,.4)" fontFamily="monospace" letterSpacing="1">MEM CTRL</text>
+
+        {/* ── IO CONTROLLER (top) ─────────────────── */}
+        {[0,1].map(i => (
+          <rect key={i} x={74 + i * 110} y="24" width="90" height="22" rx="2"
+            fill="rgba(255,102,0,.04)" stroke="rgba(255,102,0,.2)" strokeWidth=".8"/>
         ))}
-        <text x="315" y="332" textAnchor="middle" fontSize="7"
-          fill="#555" fontFamily="monospace" letterSpacing="2">GPU</text>
 
-        {/* ── RESERVOIR ────────────────────────────── */}
-        <rect x="155" y="400" width="50" height="100" rx="25"
-          fill="rgba(20,20,40,.8)" stroke="#2a2a4a" strokeWidth="1.5"/>
-        <ellipse cx="180" cy="400" rx="25" ry="8"
-          fill="rgba(30,30,50,.9)" stroke="#2a2a4a" strokeWidth="1.5"/>
-        <rect x="163" y="412" width="34" height="76" rx="3"
-          className="tube-inner rgb-tube rgb-tube-1" strokeWidth="0" style={{fill:'rgba(0,0,0,0)'}}/>
-        <rect x="163" y="412" width="34" height="76" rx="3"
-          fill="none" strokeWidth="3"
-          className="rgb-tube rgb-tube-2"/>
-        <text x="180" y="515" textAnchor="middle" fontSize="7"
-          fill="#555" fontFamily="monospace" letterSpacing="2">RES</text>
+        {/* ── DATA BUSES ──────────────────────────── */}
+        <g stroke="rgba(0,255,208,.12)" strokeWidth=".8" fill="none">
+          <line x1="64" y1="46" x2="64" y2="314"/>
+          <line x1="296" y1="46" x2="296" y2="314"/>
+          <line x1="74" y1="310" x2="74" y2="46"/>
+          <line x1="286" y1="310" x2="286" y2="46"/>
+          <line x1="28" y1="180" x2="332" y2="180"/>
+        </g>
 
-        {/* ── MAIN TUBES (outer dark shell) ─────────── */}
-        {/* Left down: radiator → CPU */}
-        <path d="M 80,110 V 175 Q 80,220 95,220" fill="none" stroke="#1e1e38" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round"/>
-        {/* CPU → bottom-left → reservoir */}
-        <path d="M 95,290 Q 80,310 80,340 H 155 Q 170,340 170,355 V 400" fill="none" stroke="#1e1e38" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round"/>
-        {/* Reservoir → GPU bottom */}
-        <path d="M 205,450 Q 240,450 260,390 V 320" fill="none" stroke="#1e1e38" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round"/>
-        {/* GPU top → radiator right */}
-        <path d="M 315,200 V 140 Q 315,110 310,110" fill="none" stroke="#1e1e38" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round"/>
-        {/* CPU top → radiator left */}
-        <path d="M 100,220 Q 100,155 110,140 H 90" fill="none" stroke="#1e1e38" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round"/>
-        {/* CPU → GPU horizontal */}
-        <path d="M 140,255 Q 200,255 260,255" fill="none" stroke="#1e1e38" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round"/>
+        {/* ── COMPUTE CORES 4×4 ───────────────────── */}
+        {CORES.map(i => {
+          const col = i % 4
+          const row = Math.floor(i / 4)
+          const x = 78 + col * 54
+          const y = 50 + row * 54
+          return (
+            <g key={i}>
+              {/* core bg */}
+              <rect x={x} y={y} width="44" height="44" rx="3"
+                fill="rgba(0,255,208,.04)" stroke="rgba(0,255,208,.2)" strokeWidth=".8"/>
+              {/* core inner detail */}
+              <rect x={x+4} y={y+4} width="16" height="16" rx="1"
+                fill="rgba(0,255,208,.06)" stroke="rgba(0,255,208,.15)" strokeWidth=".5"/>
+              <rect x={x+24} y={y+4} width="16" height="16" rx="1"
+                fill="rgba(0,255,208,.06)" stroke="rgba(0,255,208,.15)" strokeWidth=".5"/>
+              <rect x={x+4} y={y+24} width="16" height="16" rx="1"
+                fill="rgba(0,255,208,.06)" stroke="rgba(0,255,208,.15)" strokeWidth=".5"/>
+              <rect x={x+24} y={y+24} width="16" height="16" rx="1"
+                fill="rgba(0,255,208,.06)" stroke="rgba(0,255,208,.15)" strokeWidth=".5"/>
+              {/* active glow overlay */}
+              <rect x={x} y={y} width="44" height="44" rx="3"
+                fill="rgba(0,255,208,.0)" stroke="rgba(0,255,208,.0)" strokeWidth="0"
+                filter="url(#core-glow)"
+                className="core-active"
+                style={{ animationDelay: `${DELAYS[i]}s` }}/>
+            </g>
+          )
+        })}
 
-        {/* ── MAIN TUBES (rgb inner glow) ────────────── */}
-        <path d="M 80,110 V 175 Q 80,220 95,220" fill="none" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="rgb-tube rgb-tube-1"/>
-        <path d="M 95,290 Q 80,310 80,340 H 155 Q 170,340 170,355 V 400" fill="none" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="rgb-tube rgb-tube-2"/>
-        <path d="M 205,450 Q 240,450 260,390 V 320" fill="none" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="rgb-tube rgb-tube-3"/>
-        <path d="M 315,200 V 140 Q 315,110 310,110" fill="none" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="rgb-tube rgb-tube-1"/>
-        <path d="M 100,220 Q 100,155 110,140 H 90" fill="none" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="rgb-tube rgb-tube-2"/>
-        <path d="M 140,255 Q 200,255 260,255" fill="none" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="rgb-tube rgb-tube-3"/>
-
-        {/* ── FITTINGS (junction circles) ───────────── */}
-        {[
-          [80,110],[95,220],[95,290],[170,400],[205,450],
-          [260,320],[315,200],[310,110],[140,255],[260,255],
-        ].map(([cx,cy],i) => (
-          <g key={i} filter="url(#tglow-soft)">
-            <circle cx={cx} cy={cy} r="7" fill="#111122" stroke="#2a2a4a" strokeWidth="1.5"/>
-            <circle cx={cx} cy={cy} r="3" className={`fitting rgb-tube rgb-tube-${(i%3)+1}`}/>
-          </g>
-        ))}
+        {/* ── DIE LABEL ───────────────────────────── */}
+        <text x="180" y="14" textAnchor="middle" fontSize="7"
+          fill="rgba(0,255,208,.3)" fontFamily="monospace" letterSpacing="3">HYPERGEE-X1</text>
       </svg>
     </div>
   )

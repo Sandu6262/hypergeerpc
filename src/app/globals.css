@@ -136,47 +136,40 @@ body {
   overflow: hidden;
 }
 
-/* ===== RGB COOLING TUBES BACKGROUND ===== */
-@keyframes rgb-1 {
-  0%   { stroke: #FF0055; }
-  20%  { stroke: #FF6600; }
-  40%  { stroke: #00FFD0; }
-  60%  { stroke: #7B2FFF; }
-  80%  { stroke: #00AAFF; }
-  100% { stroke: #FF0055; }
+/* ===== CPU DIE BACKGROUND ===== */
+@keyframes core-fire {
+  0%, 100% { fill: rgba(0,255,208,.0);  stroke: rgba(0,255,208,.0); }
+  40%, 60% { fill: rgba(0,255,208,.18); stroke: rgba(0,255,208,.6); }
 }
-@keyframes rgb-2 {
-  0%   { stroke: #00AAFF; }
-  20%  { stroke: #FF0055; }
-  40%  { stroke: #7B2FFF; }
-  60%  { stroke: #00FFD0; }
-  80%  { stroke: #FF6600; }
-  100% { stroke: #00AAFF; }
+@keyframes cache-pulse {
+  0%, 100% { fill: rgba(0,255,208,.05); }
+  50%       { fill: rgba(0,255,208,.14); }
 }
-@keyframes rgb-3 {
-  0%   { stroke: #7B2FFF; }
-  20%  { stroke: #00FFD0; }
-  40%  { stroke: #FF6600; }
-  60%  { stroke: #00AAFF; }
-  80%  { stroke: #FF0055; }
-  100% { stroke: #7B2FFF; }
+@keyframes cache-pulse-v {
+  0%, 100% { fill: rgba(123,47,255,.05); }
+  50%       { fill: rgba(123,47,255,.16); }
 }
-.rgb-tube   { filter: url(#tglow); }
-.rgb-tube-1 { animation: rgb-1 4s linear infinite; }
-.rgb-tube-2 { animation: rgb-2 4s linear infinite; }
-.rgb-tube-3 { animation: rgb-3 4s linear infinite; }
-.tube-inner { opacity: .7; }
-.fitting    { r: 3; }
+@keyframes mc-pulse {
+  0%, 100% { fill: rgba(0,170,255,.05); }
+  50%       { fill: rgba(0,170,255,.18); }
+}
+.core-active {
+  animation: core-fire 2.5s ease-in-out infinite;
+}
+.cache-block   { animation: cache-pulse 3s ease-in-out infinite; }
+.cache-block-v { animation: cache-pulse-v 3.5s ease-in-out infinite; }
+.mc-block      { animation: mc-pulse 4s ease-in-out infinite; }
+
 .circuit-bg {
   position: fixed;
-  right: 2%;
+  right: 3%;
   top: 50%;
   transform: translateY(-50%);
-  width: 420px;
-  height: 560px;
+  width: 380px;
+  height: 380px;
   z-index: 0;
   pointer-events: none;
-  opacity: .55;
+  opacity: .45;
 }
 .circuit-svg { width: 100%; height: 100%; }
 @media (max-width: 700px) { .circuit-bg { display: none; } }
