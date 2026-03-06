@@ -1009,33 +1009,54 @@ body {
 }
 
 @media (max-width: 700px) {
+  /* Navbar */
   .navbar { padding: 0 16px; height: 56px; }
   .nav-links { display: none; }
   .logo-text { font-size: 17px; letter-spacing: 2px; }
   .nav-logo-img { height: 34px; }
   .cart-btn { padding: 7px 14px; font-size: 13px; }
 
-  .hero { padding: 80px 16px 40px; }
+  /* Gaming setup — scaled & visible on mobile */
+  .fans-bg {
+    width: 96vw;
+    height: calc(96vw * 470 / 520);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.28;
+  }
+
+  /* Hero — full height so setup is visible below text */
+  .hero {
+    min-height: 100vh;
+    padding: 72px 16px 40px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
   .hero::before { display: none; }
-  .hero-content { max-width: 100%; }
-  .hero-title { font-size: 36px; line-height: 1.1; }
-  .hero-sub { font-size: 18px; letter-spacing: 2px; }
-  .hero-desc { font-size: 15px; margin-bottom: 24px; }
+  .hero-content { max-width: 100%; position: relative; z-index: 2; }
+  .hero-terminal { font-size: 10px; }
+  .hero-title { font-size: 34px; line-height: 1.1; }
+  .hero-sub { font-size: 17px; letter-spacing: 2px; }
+  .hero-desc { font-size: 14px; margin-bottom: 20px; }
   .hero-badge { font-size: 11px; padding: 5px 12px; }
   .hero-btns { flex-direction: column; gap: 10px; }
   .hero-btns .btn-primary,
   .hero-btns .btn-secondary { width: 100%; justify-content: center; padding: 13px 20px; }
   .hero-stats { width: 100%; }
-  .stat-item { padding: 12px 18px; flex: 1; }
-  .stat-num { font-size: 20px; }
-  .stat-lbl { font-size: 10px; }
+  .stat-item { padding: 10px 14px; flex: 1; }
+  .stat-num { font-size: 18px; }
+  .stat-lbl { font-size: 9px; }
 
+  /* Content */
   .container { padding: 0 14px; }
-  .section-title { font-size: 26px; }
+  .section-title { font-size: 24px; }
   .section-desc { font-size: 14px; }
   .filters-section { padding: 50px 0 20px; }
-  .filter-btn { padding: 8px 16px; font-size: 13px; }
+  .filter-btn { padding: 8px 14px; font-size: 13px; }
 
+  /* PC Grid */
   .pcs-grid { grid-template-columns: 1fr; gap: 16px; }
   .pcs-grid-section { padding: 18px 0 50px; }
   .pc-image { height: 180px; }
@@ -1044,20 +1065,27 @@ body {
   .pc-price { font-size: 20px; }
   .pc-specs li { font-size: 12px; padding: 5px 0; }
 
+  /* Builder */
   .builder-section { padding: 60px 0; }
   .comp-options { grid-template-columns: 1fr; }
 
+  /* Cart */
   .cart-sidebar { width: 100%; right: -100%; }
   .cart-sidebar.open { right: 0; }
 
+  /* Contact */
   .contact-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .contact-card { padding: 16px 10px; }
   .contact-card p { font-size: 12px; }
 
+  /* Footer */
   .footer-content { flex-direction: column; align-items: center; text-align: center; gap: 18px; }
   .footer-links { flex-wrap: wrap; justify-content: center; gap: 14px; }
 
+  /* Toast */
   .toast { width: 90%; white-space: normal; text-align: center; font-size: 13px; }
+
+  /* Particles — reduce pe mobile */
   .bg-particles-full div { display: none; }
-  .bg-particles-full div:nth-child(-n+30) { display: block; }
+  .bg-particles-full div:nth-child(-n+20) { display: block; }
 }
