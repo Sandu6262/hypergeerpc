@@ -114,19 +114,28 @@ body {
 }
 
 /* ===== FULL PAGE PARTICLES ===== */
-.bg-particles-full { display: none; }
+.bg-particles-full { display: block; }
 .bg-stars { display: block; }
 
 /* ===== RGB KEYBOARD BACKGROUND ===== */
 /* ===== GAMING SETUP BACKGROUND ===== */
 @keyframes kb-wave {
-  0%, 100% { stroke: rgba(237,182,0,.5); fill: rgba(237,182,0,.06); }
+  0%   { stroke: rgba(237,182,0,.7);  fill: rgba(237,182,0,.12); }
+  35%  { stroke: rgba(255,255,255,.8); fill: rgba(255,255,255,.10); }
+  70%  { stroke: rgba(255,207,63,.7);  fill: rgba(255,207,63,.12); }
+  100% { stroke: rgba(237,182,0,.7);  fill: rgba(237,182,0,.12); }
 }
 @keyframes kb-glow-wave {
-  0%, 100% { filter: drop-shadow(0 0 4px rgba(237,182,0,.6)); }
+  0%   { filter: drop-shadow(0 0 5px rgba(237,182,0,.8)); }
+  35%  { filter: drop-shadow(0 0 7px rgba(255,255,255,.9)); }
+  70%  { filter: drop-shadow(0 0 5px rgba(255,207,63,.8)); }
+  100% { filter: drop-shadow(0 0 5px rgba(237,182,0,.8)); }
 }
 @keyframes kb-label-wave {
-  0%, 100% { fill: rgba(237,182,0,.8); }
+  0%   { fill: rgba(237,182,0,.9); }
+  35%  { fill: rgba(255,255,255,1); }
+  70%  { fill: rgba(255,207,63,.9); }
+  100% { fill: rgba(237,182,0,.9); }
 }
 @keyframes screen-glow {
   0%,100% { fill: rgba(237,182,0,.06); }
@@ -147,9 +156,9 @@ body {
 @keyframes mouse-rgb {
   0%, 100% { stroke: rgba(237,182,0,.5); }
 }
-.kb-key        { animation: kb-wave 4s linear infinite; }
-.kb-glow       { animation: kb-glow-wave 4s linear infinite; }
-.kb-label      { animation: kb-label-wave 4s linear infinite; }
+.kb-key        { animation: kb-wave 3s ease-in-out infinite; }
+.kb-glow       { animation: kb-glow-wave 3s ease-in-out infinite; }
+.kb-label      { animation: kb-label-wave 3s ease-in-out infinite; }
 .screen-bg     { animation: screen-glow 3s ease-in-out infinite; }
 .scan-line     { animation: scan 2.5s linear infinite; }
 .power-led     { animation: led-pulse 1.5s ease-in-out infinite; }
