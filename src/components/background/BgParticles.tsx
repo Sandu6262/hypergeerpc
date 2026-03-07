@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 
-const COLORS = ['#1A7FFF', '#FF7A00', '#FFFFFF', '#0055CC', '#FFA040', '#80B8FF']
+const COLORS = ['#FFD700', '#FFFFFF', '#FFE866', '#CCAA00', '#E0E0E0', '#AAAAAA']
 
 export default function BgParticles() {
   const ref = useRef<HTMLDivElement>(null)
