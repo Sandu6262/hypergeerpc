@@ -114,7 +114,7 @@ body {
 }
 
 /* ===== FULL PAGE PARTICLES ===== */
-.bg-particles-full { display: block; }
+.bg-particles-full { display: none; }
 .bg-stars { display: block; }
 
 /* ===== RGB KEYBOARD BACKGROUND ===== */
