@@ -492,14 +492,9 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   gap: 22px;
 }
-/* 3rd card — full width, centered */
-.pcs-grid .pc-card:nth-child(3) {
-  grid-column: 1 / -1;
-}
+/* 3rd card — same size as others */
 .pcs-grid .pc-card:nth-child(3) .pc-card-body {
-  align-items: center;
-  text-align: center;
-  padding: 32px;
+  padding: 20px;
 }
 
 /* ===== PC CARD ===== */
@@ -994,7 +989,6 @@ body {
   .build-summary { position: static; order: 2; }
   .builder-form { order: 1; }
   .pcs-grid { grid-template-columns: 1fr; gap: 16px; }
-  .pcs-grid .pc-card:nth-child(3) { grid-column: auto; }
 }
 
 @media (max-width: 700px) {
