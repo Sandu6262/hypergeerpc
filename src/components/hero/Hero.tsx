@@ -1,26 +1,41 @@
 import { Flame, Monitor, Wrench } from 'lucide-react'
 import HeroParticles from './HeroParticles'
+import FuzzyText from '@/components/ui/FuzzyText'
 
 export default function Hero() {
   return (
     <section className="hero">
       <div className="hero-content">
         <div className="hero-terminal">
-          SYSTEM ONLINE — HYPERGEERPC v2.0 <span className="hero-terminal-cursor" />
+          SYSTEM ONLINE — HYPERGEERPC v2.0
         </div>
         <div className="hero-badge">
           <Flame size={13} />
           Cele mai tari PC-uri din Moldova
         </div>
         <h1 className="hero-title">
-          <span className="rgb-text">HypergeeRPC</span>
-          <br />
-          <span className="hero-sub">Calculatoare de Performanta</span>
+          <FuzzyText
+            fontSize="clamp(2.5rem, 8vw, 6rem)"
+            fontWeight={900}
+            color="#EDB600"
+            baseIntensity={0.15}
+            hoverIntensity={0.5}
+            enableHover={true}
+          >
+            HypergeeRPC
+          </FuzzyText>
+          <FuzzyText
+            fontSize="clamp(1rem, 3vw, 1.8rem)"
+            fontWeight={700}
+            color="#ffffff"
+            baseIntensity={0.08}
+            hoverIntensity={0.35}
+            enableHover={true}
+            className="hero-sub-fuzzy"
+          >
+            Calculatoare de Performanta
+          </FuzzyText>
         </h1>
-        <p className="hero-desc">
-          Cumpara calculatoare prefabricate sau construieste-l pe al tau.<br />
-          Componente premium &middot; Preturi accesibile &middot; Design RGB.
-        </p>
         <div className="hero-btns">
           <a href="#prebuilt" className="btn-primary">
             <Monitor size={16} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 8 }} />

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 
-const COLORS = ['#8B00FF', '#FF1493', '#00FFFF', '#FF6600', '#BF00FF', '#FF69B4']
+const COLORS = ['#EDB600', '#FFD740', '#FFFFFF', '#FFE680', '#B88A00', '#FFF5CC']
 
 export default function HeroParticles() {
   const ref = useRef<HTMLDivElement>(null)

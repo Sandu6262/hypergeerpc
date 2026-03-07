@@ -113,6 +113,32 @@ body {
   100% { transform: translateY(100%); opacity: 0; }
 }
 
+/* ===== CONTROLLERS DRIFT ANIMATIONS ===== */
+@keyframes ctrl-drift-1 {
+  0%,100% { transform: translate(0px, 0px); }
+  30%     { transform: translate(28px, -22px); }
+  65%     { transform: translate(-12px, -38px); }
+}
+@keyframes ctrl-drift-2 {
+  0%,100% { transform: translate(0px, 0px); }
+  35%     { transform: translate(-30px, -28px); }
+  70%     { transform: translate(18px, -44px); }
+}
+@keyframes ctrl-drift-3 {
+  0%,100% { transform: translate(0px, 0px); }
+  50%     { transform: translate(42px, 26px); }
+}
+@keyframes ctrl-drift-4 {
+  0%,100% { transform: translate(0px, 0px); }
+  25%     { transform: translate(-34px, 18px); }
+  75%     { transform: translate(22px, -28px); }
+}
+@keyframes ctrl-drift-5 {
+  0%,100% { transform: translate(0px, 0px); }
+  40%     { transform: translate(22px, 38px); }
+  70%     { transform: translate(-24px, 16px); }
+}
+
 /* ===== FULL PAGE PARTICLES ===== */
 .bg-particles-full { display: none; }
 .bg-stars { display: block; }
@@ -273,7 +299,7 @@ body {
   text-align: center;
 }
 .hero::before { content: none; }
-.hero-content { max-width: 760px; animation: fadeInUp .8s ease-out; text-align: center; }
+.hero-content { max-width: 760px; animation: fadeInUp .8s ease-out; text-align: center; display: flex; flex-direction: column; align-items: center; }
 .hero-terminal {
   font-family: var(--font-orbitron, 'Orbitron', monospace);
   font-size: 12px;
@@ -319,6 +345,9 @@ body {
   font-weight: 900;
   line-height: 1.06;
   margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: linear-gradient(135deg, #EDB600 0%, #FFCF3F 55%, #FFFFFF 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -326,6 +355,7 @@ body {
   filter: drop-shadow(0 0 22px rgba(237,182,0,.35));
 }
 .rgb-text { animation: rgb-text 4s linear infinite; }
+.hero-sub-fuzzy { margin-top: 20px; }
 .hero-sub {
   font-size: 32px;
   color: var(--muted);
@@ -905,9 +935,14 @@ body {
 /* ===== CONTACT ===== */
 .contact-section { padding: 80px 0; position: relative; z-index: 1; }
 .contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px,1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 16px;
+}
+.contact-grid .contact-card {
+  width: 210px;
+  flex-shrink: 0;
 }
 .contact-card {
   background: var(--card);
@@ -915,6 +950,9 @@ body {
   border-radius: 6px;
   padding: 24px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   transition: transform .3s, border-color .3s, box-shadow .3s;
   position: relative;
   overflow: hidden;
@@ -1000,7 +1038,7 @@ body {
   .cart-btn { padding: 7px 14px; font-size: 13px; }
 
   /* Hide background animations on mobile */
-  .fans-bg, .bg-particles-full, .bg-stars { display: none; }
+  .fans-bg, .bg-particles-full, .bg-stars, .controllers-bg { display: none; }
 
   .logo-icon, .rgb-text { color: var(--teal); text-shadow: none; }
 

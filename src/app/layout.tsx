@@ -4,10 +4,9 @@ import './globals.css'
 import { StoreProvider } from '@/store/StoreContext'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import FansBg from '@/components/background/FansBg'
-import BgParticles from '@/components/background/BgParticles'
-import BgStars from '@/components/background/BgStars'
+import dynamic from 'next/dynamic'
 import CartSidebar from '@/components/cart/CartSidebar'
+const GalaxyBg = dynamic(() => import('@/components/background/GalaxyBg'), { ssr: false })
 import Toast from '@/components/ui/Toast'
 
 const orbitron = Orbitron({
@@ -37,9 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ro" className={`${orbitron.variable} ${rajdhani.variable}`}>
       <body>
         <StoreProvider>
-          <BgParticles />
-          <BgStars />
-          <FansBg />
+          <GalaxyBg />
           <Navbar />
           <CartSidebar />
           {children}

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useRef } from 'react'
 import {
   Cpu, Layers, Database, HardDrive, CircuitBoard,
   Zap, Package, Wind, Settings, Wrench, BarChart2,
@@ -8,6 +8,7 @@ import {
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useStore } from '@/store/StoreContext'
+import { ParticleCard, MagicBentoSpotlight } from '@/components/ui/ParticleCard'
 import { components, typeLabels } from '@/data/components'
 import { ComponentType, ComponentSpec, SelectedComps } from '@/data/types'
 import { autoBuildWithinBudget } from '@/lib/autoBuild'
@@ -28,6 +29,7 @@ const groupMeta: { type: ComponentType; Icon: LucideIcon; label: string }[] = [
 ]
 
 export default function BuilderSection() {
+  const gridRef = useRef<HTMLDivElement>(null)
   const { state, setComponents, setBudget, addToCart, showToast } = useStore()
   const { selectedComps, budgetMax } = state
 
@@ -101,7 +103,8 @@ export default function BuilderSection() {
           </div>
         </div>
 
-        <div className="builder-layout">
+        <MagicBentoSpotlight gridRef={gridRef} />
+        <div className="builder-layout bento-section" ref={gridRef}>
           <div className="builder-form">
             {groupMeta.map(({ type, Icon, label }) => {
               const typeComps = components[type]
@@ -109,7 +112,7 @@ export default function BuilderSection() {
               const showComps = visibleComps.length > 0 ? visibleComps : [typeComps[0]]
 
               return (
-                <div className="component-group" key={type}>
+                <ParticleCard key={type} className="component-group">
                   <h3 className="comp-title">
                     <span className="comp-icon"><Icon size={20} /></span> {label}
                   </h3>
@@ -136,13 +139,13 @@ export default function BuilderSection() {
                       )
                     })}
                   </div>
-                </div>
+                </ParticleCard>
               )
             })}
           </div>
 
           <div className="build-summary">
-            <div className="summary-card">
+            <ParticleCard className="summary-card">
               <h3>
                 <Settings size={16} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 8 }} />
                 Configuratia Ta
@@ -210,7 +213,7 @@ export default function BuilderSection() {
                 <RotateCcw size={15} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 8 }} />
                 Reseteaza Configuratia
               </button>
-            </div>
+            </ParticleCard>
           </div>
         </div>
       </div>
