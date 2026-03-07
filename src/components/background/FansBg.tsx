@@ -23,7 +23,7 @@ const ROWS: { y: number; x: number; keys: Key[] }[] = [
 export default function FansBg() {
   return (
     <div className="fans-bg" aria-hidden="true">
-      <svg viewBox="0 0 520 470" xmlns="http://www.w3.org/2000/svg" className="fans-svg">
+      <svg viewBox="0 0 540 470" xmlns="http://www.w3.org/2000/svg" className="fans-svg">
 
         {/* ── MONITOR — centered at x=260 ───────────── */}
         <rect x="110" y="10" width="260" height="185" rx="10"

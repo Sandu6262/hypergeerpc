@@ -1018,13 +1018,16 @@ body {
   /* Gaming setup — scaled & visible on mobile */
   .fans-bg {
     width: 96vw;
-    height: calc(96vw * 470 / 520);
+    height: calc(96vw * 470 / 540);
     left: 50%;
     top: 50%;
-    transform: translate(-62%, -50%);
+    transform: translate(-56%, -50%);
     opacity: 0.7;
     filter: brightness(1.8) contrast(1.2);
   }
+
+  /* Hide heavy background effects on mobile for performance */
+  .bg-particles-full, .bg-stars { display: none; }
 
   /* Hero — full height so setup is visible below text */
   .hero {
