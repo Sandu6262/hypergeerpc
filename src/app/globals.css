@@ -115,7 +115,7 @@ body {
 
 /* ===== FULL PAGE PARTICLES ===== */
 .bg-particles-full { display: none; }
-.bg-stars { display: none; }
+.bg-stars { display: block; }
 
 /* ===== RGB KEYBOARD BACKGROUND ===== */
 /* ===== GAMING SETUP BACKGROUND ===== */
@@ -164,7 +164,7 @@ body {
 
 .fans-bg {
   position: fixed;
-  left: 50%;
+  left: 62%;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 600px;
