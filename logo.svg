@@ -21,7 +21,7 @@
     <rect x="15" y="17" width="18" height="12" rx="2.5"
           fill="rgba(35,28,0,0.92)" stroke="url(#lg)" stroke-width="1.4"/>
     <circle cx="24" cy="23" r="4" fill="url(#lg)" filter="url(#gw)"/>
-    <circle cx="24" cy="23" r="1.6" fill="rgba(248,215,255,1)"/>
+    <circle cx="24" cy="23" r="1.6" fill="rgba(255,240,180,1)"/>
     <!-- pins -->
     <line x1="24" y1="17" x2="24" y2="9"  stroke="url(#lg)" stroke-width="1.4"/>
     <circle cx="24" cy="8" r="2" fill="#EDB600"/>
@@ -38,6 +38,6 @@
 
   <!-- Text: HYPERGEE + RPC -->
   <text x="70" y="37" font-family="Orbitron, Arial Black, sans-serif" font-size="22" font-weight="900" letter-spacing="1" filter="url(#tgw)">
-    <tspan fill="#ffffff">HYPERGEE</tspan><tspan fill="url(#lg)">RPC</tspan>
+    <tspan fill="url(#lg)">HYPERGEE</tspan><tspan fill="url(#lg)">RPC</tspan>
   </text>
 </svg>
