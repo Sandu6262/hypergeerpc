@@ -67,30 +67,16 @@ body::after {
   to   { transform: rotate(360deg); }
 }
 @keyframes glitch {
-  0%, 85%, 100% { transform: none; text-shadow: 0 0 30px var(--teal), 0 0 60px rgba(0,245,255,.3); }
-  86% { transform: translate(-4px, 0) skewX(2deg); color: var(--red); }
-  87% { transform: translate(4px, 0) skewX(-2deg); color: var(--teal); text-shadow: 3px 0 var(--red), -3px 0 var(--teal); }
-  88% { transform: translate(-2px, 1px); }
-  89% { transform: none; text-shadow: -4px 0 var(--volt), 4px 0 var(--teal); }
-  90% { transform: none; text-shadow: 0 0 30px var(--teal); }
+  0%, 100% { transform: none; }
 }
 @keyframes rgb-text {
-  0%   { color: var(--teal);  text-shadow: 0 0 22px var(--teal),  0 0 50px rgba(0,245,255,.3); }
-  33%  { color: var(--volt-l);text-shadow: 0 0 22px var(--volt-l),0 0 50px rgba(170,255,0,.3); }
-  66%  { color: var(--red);   text-shadow: 0 0 22px var(--red),   0 0 50px rgba(255,0,128,.3); }
-  100% { color: var(--teal);  text-shadow: 0 0 22px var(--teal),  0 0 50px rgba(0,245,255,.3); }
+  0%, 100% { color: var(--teal); text-shadow: 0 0 18px rgba(0,245,255,.4); }
 }
 @keyframes rgb-border {
-  0%   { border-color: var(--teal);  box-shadow: 0 0 18px rgba(0,245,255,.4),  inset 0 0 8px rgba(0,245,255,.05); }
-  33%  { border-color: var(--volt-l);box-shadow: 0 0 18px rgba(170,255,0,.4), inset 0 0 8px rgba(170,255,0,.05); }
-  66%  { border-color: var(--red);   box-shadow: 0 0 18px rgba(255,0,128,.4),  inset 0 0 8px rgba(255,0,128,.05); }
-  100% { border-color: var(--teal);  box-shadow: 0 0 18px rgba(0,245,255,.4),  inset 0 0 8px rgba(0,245,255,.05); }
+  0%, 100% { border-color: var(--teal); box-shadow: 0 0 16px rgba(0,245,255,.25), inset 0 0 6px rgba(0,245,255,.04); }
 }
 @keyframes rgb-flow {
-  0%   { background: var(--teal); }
-  33%  { background: var(--volt-l); }
-  66%  { background: var(--red); }
-  100% { background: var(--teal); }
+  0%, 100% { background: var(--teal); }
 }
 @keyframes pulse {
   0%, 100% { opacity: .7; transform: scale(1); }
@@ -157,22 +143,13 @@ body::after {
 /* ===== RGB KEYBOARD BACKGROUND ===== */
 /* ===== GAMING SETUP BACKGROUND ===== */
 @keyframes kb-wave {
-  0%   { stroke: rgba(0,245,255,.5);  fill: rgba(0,245,255,.06);  }
-  40%  { stroke: rgba(255,0,128,.5); fill: rgba(255,0,128,.06); }
-  70%  { stroke: rgba(255,0,128,.45); fill: rgba(255,0,128,.05);  }
-  100% { stroke: rgba(0,245,255,.5);  fill: rgba(0,245,255,.06);  }
+  0%, 100% { stroke: rgba(0,245,255,.5); fill: rgba(0,245,255,.06); }
 }
 @keyframes kb-glow-wave {
-  0%   { filter: drop-shadow(0 0 4px rgba(0,245,255,.65));  }
-  40%  { filter: drop-shadow(0 0 4px rgba(255,0,128,.65)); }
-  70%  { filter: drop-shadow(0 0 4px rgba(255,0,128,.6));   }
-  100% { filter: drop-shadow(0 0 4px rgba(0,245,255,.65));  }
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(0,245,255,.6)); }
 }
 @keyframes kb-label-wave {
-  0%   { fill: rgba(0,245,255,.75);  }
-  40%  { fill: rgba(170,255,0,.75); }
-  70%  { fill: rgba(170,255,0,.7);  }
-  100% { fill: rgba(0,245,255,.75);  }
+  0%, 100% { fill: rgba(0,245,255,.8); }
 }
 @keyframes screen-glow {
   0%,100% { fill: rgba(0,245,255,.06); }
@@ -187,17 +164,11 @@ body::after {
   50%     { opacity: .3; }
 }
 @keyframes monitor-rgb {
-  0%   { stroke: rgba(0,245,255,.5);  }
-  33%  { stroke: rgba(255,0,128,.5); }
-  66%  { stroke: rgba(255,0,128,.45); }
-  100% { stroke: rgba(0,245,255,.5);  }
+  0%, 100% { stroke: rgba(0,245,255,.5); }
 }
 @keyframes hud-pulse { 0%,100%{opacity:.8} 50%{opacity:1} }
 @keyframes mouse-rgb {
-  0%   { stroke: rgba(0,245,255,.5);  }
-  33%  { stroke: rgba(255,0,128,.5); }
-  66%  { stroke: rgba(255,0,128,.45); }
-  100% { stroke: rgba(0,245,255,.5);  }
+  0%, 100% { stroke: rgba(0,245,255,.5); }
 }
 .kb-key        { animation: kb-wave 4s linear infinite; }
 .kb-glow       { animation: kb-glow-wave 4s linear infinite; }
@@ -1044,18 +1015,7 @@ body::after {
   /* Hide all background animations on mobile */
   .fans-bg, .bg-particles-full, .bg-stars { display: none; }
 
-  /* Soften text glow & animations on mobile */
-  @keyframes rgb-text {
-    0%   { color: var(--teal);   text-shadow: 0 0 10px rgba(0,245,255,.2); }
-    33%  { color: var(--volt-l); text-shadow: 0 0 10px rgba(170,255,0,.2); }
-    66%  { color: var(--red);    text-shadow: 0 0 10px rgba(255,0,128,.2); }
-    100% { color: var(--teal);   text-shadow: 0 0 10px rgba(0,245,255,.2); }
-  }
-  @keyframes glitch {
-    0%, 100% { transform: none; text-shadow: 0 0 10px rgba(0,245,255,.2); }
-  }
-  .hero-title { animation-duration: 16s; }
-  .rgb-text   { animation-duration: 10s; }
+  .logo-icon, .rgb-text { color: var(--teal); text-shadow: none; }
 
   /* Hero — full height so setup is visible below text */
   .hero {
