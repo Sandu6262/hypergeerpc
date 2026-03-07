@@ -171,17 +171,7 @@ body {
 .hud-fill-2    { animation-delay: .4s; }
 .hud-fill-3    { animation-delay: .8s; }
 
-.fans-bg {
-  position: fixed;
-  left: 62%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 510px;
-  opacity: 0.35;
-  z-index: 0;
-  pointer-events: none;
-}
+.fans-bg { display: none; }
 .fans-svg { width: 100%; height: 100%; }
 
 /* ===== NAVBAR ===== */
@@ -517,6 +507,22 @@ body {
   flex-direction: column;
   justify-content: center;
 }
+/* 3rd card — full width, centered */
+.pcs-grid .pc-card:nth-child(3) {
+  grid-column: 1 / -1;
+  flex-direction: column !important;
+}
+.pcs-grid .pc-card:nth-child(3) .pc-image {
+  width: 100%;
+  height: 280px;
+  min-height: unset;
+  border-radius: 16px 16px 0 0;
+}
+.pcs-grid .pc-card:nth-child(3) .pc-card-body {
+  align-items: center;
+  text-align: center;
+  padding: 32px;
+}
 
 /* ===== PC CARD ===== */
 .pc-card {
@@ -562,7 +568,7 @@ body {
 .corner.br { bottom: 8px; right: 8px; border-bottom: 2px solid var(--teal); border-right: 2px solid var(--teal); opacity: .5; }
 .pc-card:hover .corner { opacity: 1; width: 18px; height: 18px; }
 /* Card body padding */
-.pc-card-body { padding: 20px 20px 20px; }
+.pc-card-body { padding: 20px 20px 20px; background: #000000; }
 
 .pc-name-row {
   display: flex;
