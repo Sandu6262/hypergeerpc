@@ -1015,19 +1015,21 @@ body {
   .nav-logo-img { height: 34px; }
   .cart-btn { padding: 7px 14px; font-size: 13px; }
 
-  /* Gaming setup — scaled & visible on mobile */
-  .fans-bg {
-    width: 96vw;
-    height: calc(96vw * 470 / 540);
-    left: 50%;
-    top: 50%;
-    transform: translate(-56%, -50%);
-    opacity: 0.7;
-    filter: brightness(1.8) contrast(1.2);
-  }
+  /* Hide all background animations on mobile */
+  .fans-bg, .bg-particles-full, .bg-stars { display: none; }
 
-  /* Hide heavy background effects on mobile for performance */
-  .bg-particles-full, .bg-stars { display: none; }
+  /* Soften text glow & animations on mobile */
+  @keyframes rgb-text {
+    0%   { color: var(--teal);   text-shadow: 0 0 10px rgba(0,255,208,.2); }
+    33%  { color: var(--volt-l); text-shadow: 0 0 10px rgba(168,85,255,.2); }
+    66%  { color: var(--red);    text-shadow: 0 0 10px rgba(255,45,85,.2); }
+    100% { color: var(--teal);   text-shadow: 0 0 10px rgba(0,255,208,.2); }
+  }
+  @keyframes glitch {
+    0%, 100% { transform: none; text-shadow: 0 0 10px rgba(0,255,208,.2); }
+  }
+  .hero-title { animation-duration: 16s; }
+  .rgb-text   { animation-duration: 10s; }
 
   /* Hero — full height so setup is visible below text */
   .hero {
