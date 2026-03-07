@@ -265,13 +265,15 @@ body {
   min-height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 110px 40px 70px;
   position: relative;
   z-index: 1;
   overflow: hidden;
+  text-align: center;
 }
 .hero::before { content: none; }
-.hero-content { max-width: 720px; animation: fadeInUp .8s ease-out; }
+.hero-content { max-width: 760px; animation: fadeInUp .8s ease-out; text-align: center; }
 .hero-terminal {
   font-family: var(--font-orbitron, 'Orbitron', monospace);
   font-size: 12px;
@@ -280,6 +282,7 @@ body {
   margin-bottom: 18px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
 }
 .hero-terminal::before {
@@ -339,7 +342,7 @@ body {
   margin-bottom: 36px;
   max-width: 560px;
 }
-.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 44px; }
+.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 44px; justify-content: center; }
 .hero-particles { position: absolute; inset: 0; pointer-events: none; z-index: -1; }
 .hero-stats {
   display: flex;
@@ -352,6 +355,7 @@ body {
   width: fit-content;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  margin: 0 auto;
 }
 .stat-item {
   display: flex;
