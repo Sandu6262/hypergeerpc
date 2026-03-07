@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 
-const COLORS = ['#00FFD0', '#7B2FFF', '#FF2D55', '#A855FF', '#80FFEA', '#ffffff']
+const COLORS = ['#1A7FFF', '#FF7A00', '#FFFFFF', '#80B8FF', '#FFA040', '#ffffff']
 
 export default function BgStars() {
   const ref = useRef<HTMLDivElement>(null)
