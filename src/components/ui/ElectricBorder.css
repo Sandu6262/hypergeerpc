@@ -59,3 +59,12 @@
   opacity: 0.25;
   background: linear-gradient(-30deg, #EDB600, transparent, #B88A00);
 }
+
+@media (pointer: coarse) {
+  .eb-canvas-container,
+  .eb-glow-1,
+  .eb-glow-2,
+  .eb-background-glow {
+    display: none;
+  }
+}

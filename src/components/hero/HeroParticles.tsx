@@ -10,7 +10,9 @@ export default function HeroParticles() {
   useEffect(() => {
     const container = ref.current
     if (!container) return
-    for (let i = 0; i < 25; i++) {
+    const isMobile = window.matchMedia('(pointer: coarse)').matches
+    const count = isMobile ? 6 : 25
+    for (let i = 0; i < count; i++) {
       const p = document.createElement('div')
       const size = Math.random() * 5 + 2
       const color = COLORS[Math.floor(Math.random() * COLORS.length)]

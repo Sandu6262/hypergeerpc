@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer'
 import dynamic from 'next/dynamic'
 import CartSidebar from '@/components/cart/CartSidebar'
 const GalaxyBg = dynamic(() => import('@/components/background/GalaxyBg'), { ssr: false })
+const TargetCursor = dynamic(() => import('@/components/ui/TargetCursor'), { ssr: false })
 import Toast from '@/components/ui/Toast'
 
 const orbitron = Orbitron({
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ro" className={`${orbitron.variable} ${rajdhani.variable}`}>
       <body>
         <StoreProvider>
+          <TargetCursor />
           <GalaxyBg />
           <Navbar />
           <CartSidebar />

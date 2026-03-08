@@ -36,7 +36,7 @@ export default function PrebuiltSection() {
             {filterButtons.map(({ id, label, Icon }) => (
               <button
                 key={id}
-                className={`filter-btn${filter === id ? ' active' : ''}`}
+                className={`filter-btn cursor-target${filter === id ? ' active' : ''}`}
                 onClick={() => setFilter(id as Filter)}
               >
                 <Icon size={15} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />

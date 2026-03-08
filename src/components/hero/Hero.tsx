@@ -37,11 +37,11 @@ export default function Hero() {
           </FuzzyText>
         </h1>
         <div className="hero-btns">
-          <a href="#prebuilt" className="btn-primary">
+          <a href="#prebuilt" className="btn-primary cursor-target">
             <Monitor size={16} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 8 }} />
             Calculatoare Gata
           </a>
-          <a href="#builder" className="btn-secondary">
+          <a href="#builder" className="btn-secondary cursor-target">
             <Wrench size={16} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 8 }} />
             Construieste Acum
           </a>

@@ -128,6 +128,9 @@ const ElectricBorder = ({
   )
 
   useEffect(() => {
+    // Skip expensive canvas animation on touch/mobile devices
+    if (window.matchMedia('(pointer: coarse)').matches) return
+
     const canvas = canvasRef.current
     const container = containerRef.current
     if (!canvas || !container) return

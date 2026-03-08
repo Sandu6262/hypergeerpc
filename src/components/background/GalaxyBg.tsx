@@ -160,6 +160,9 @@ export default function GalaxyBg() {
   const smoothMouseActive = useRef(0.0)
 
   useEffect(() => {
+    // Skip heavy WebGL on touch/mobile devices
+    if (window.matchMedia('(pointer: coarse)').matches) return
+
     const ctn = ctnRef.current
     if (!ctn) return
 

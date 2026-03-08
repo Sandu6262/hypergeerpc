@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 interface FuzzyTextProps {
   children: React.ReactNode
@@ -45,6 +45,11 @@ const FuzzyText = ({
   className = '',
 }: FuzzyTextProps) => {
   const canvasRef = useRef<HTMLCanvasElement & { cleanupFuzzyText?: () => void }>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    setIsMobile(window.matchMedia('(pointer: coarse)').matches)
+  }, [])
 
   useEffect(() => {
     let animationFrameId: number
@@ -277,6 +282,24 @@ const FuzzyText = ({
       if (canvas?.cleanupFuzzyText) canvas.cleanupFuzzyText()
     }
   }, [children, fontSize, fontWeight, fontFamily, color, enableHover, baseIntensity, hoverIntensity, fuzzRange, fps, direction, transitionDuration, clickEffect, glitchMode, glitchInterval, glitchDuration, gradient, letterSpacing])
+
+  if (isMobile) {
+    return (
+      <span
+        className={className}
+        style={{
+          fontSize: typeof fontSize === 'number' ? `${fontSize}px` : fontSize,
+          fontWeight,
+          color,
+          fontFamily: fontFamily === 'inherit' ? undefined : fontFamily,
+          letterSpacing: letterSpacing ? `${letterSpacing}px` : undefined,
+          display: 'block',
+        }}
+      >
+        {children}
+      </span>
+    )
+  }
 
   return <canvas ref={canvasRef} className={className} />
 }

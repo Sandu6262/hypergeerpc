@@ -27,6 +27,8 @@ export function MagicBentoSpotlight({ gridRef }: { gridRef: RefObject<HTMLDivEle
     const proximity = SPOTLIGHT_RADIUS * 0.5
     const fadeDistance = SPOTLIGHT_RADIUS * 0.75
 
+    if (window.matchMedia('(pointer: coarse)').matches) return
+
     const onMove = (e: MouseEvent) => {
       if (!gridRef.current) return
       const section = gridRef.current.closest('.bento-section') as HTMLElement
@@ -136,6 +138,7 @@ export function ParticleCard({ children, className = '', style }: ParticleCardPr
   useEffect(() => {
     const el = cardRef.current
     if (!el) return
+    if (window.matchMedia('(pointer: coarse)').matches) return
 
     const onEnter = () => {
       isHovered.current = true

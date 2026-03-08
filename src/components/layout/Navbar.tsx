@@ -24,9 +24,9 @@ export default function Navbar() {
         <img src={assetPath('/logo.svg')} alt="HypergeeRPC" className="nav-logo-img" />
       </div>
       <div className="nav-links">
-        <a href="#prebuilt" className="nav-link">Calculatoare</a>
-        <a href="#builder" className="nav-link">PC Builder</a>
-        <a href="#contact" className="nav-link">Contact</a>
+        <a href="#prebuilt" className="nav-link cursor-target">Calculatoare</a>
+        <a href="#builder" className="nav-link cursor-target">PC Builder</a>
+        <a href="#contact" className="nav-link cursor-target">Contact</a>
       </div>
       <button className="cart-btn" onClick={toggleCart}>
         <ShoppingCart size={18} style={{ display: 'inline', verticalAlign: 'middle' }} />
