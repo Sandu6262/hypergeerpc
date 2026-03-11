@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Orbitron, Rajdhani } from 'next/font/google'
 import './globals.css'
 import { StoreProvider } from '@/store/StoreContext'
@@ -25,6 +25,12 @@ const rajdhani = Rajdhani({
 })
 
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+}
 
 export const metadata: Metadata = {
   title: 'HypergeeRPC - Calculatoare & PC Builder',
