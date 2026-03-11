@@ -1,10 +1,16 @@
-import { components } from '@/data/components'
+import { components, Component, ComponentType } from '@/data/components'
 
-const ORDER = ['gpu', 'cpu', 'ram', 'storage', 'mobo', 'psu', 'cooling', 'case']
+export interface SelectedComponent extends Component {
+  type: ComponentType
+}
 
-export function autoBuildWithinBudget(budget) {
+export type SelectedComponentsMap = Partial<Record<ComponentType, SelectedComponent>>
+
+const ORDER: ComponentType[] = ['gpu', 'cpu', 'ram', 'storage', 'mobo', 'psu', 'cooling', 'case']
+
+export function autoBuildWithinBudget(budget: number): SelectedComponentsMap {
   // Step 1: assign cheapest from each category
-  const chosen = {}
+  const chosen: Record<string, Component> = {}
   let remaining = budget
 
   ORDER.forEach(type => {
@@ -32,7 +38,7 @@ export function autoBuildWithinBudget(budget) {
   }
 
   // Step 3: return selection
-  const result = {}
+  const result: SelectedComponentsMap = {}
   ORDER.forEach(type => {
     result[type] = { ...chosen[type], type }
   })

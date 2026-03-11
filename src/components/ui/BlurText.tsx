@@ -1,12 +1,36 @@
 'use client'
 import { motion } from 'framer-motion'
-import { useEffect, useRef, useState, useMemo } from 'react'
+import { useEffect, useRef, useState, useMemo, CSSProperties } from 'react'
 
-const buildKeyframes = (from, steps) => {
+type EasingFunction = (t: number) => number
+
+interface AnimationSnapshot {
+  filter?: string
+  opacity?: number
+  y?: number
+  [key: string]: any
+}
+
+const buildKeyframes = (from: AnimationSnapshot, steps: AnimationSnapshot[]) => {
   const keys = new Set([...Object.keys(from), ...steps.flatMap(s => Object.keys(s))])
-  const keyframes = {}
+  const keyframes: Record<string, any[]> = {}
   keys.forEach(k => { keyframes[k] = [from[k], ...steps.map(s => s[k])] })
   return keyframes
+}
+
+interface BlurTextProps {
+  text?: string
+  delay?: number
+  className?: string
+  animateBy?: 'words' | 'chars'
+  direction?: 'top' | 'bottom'
+  threshold?: number
+  rootMargin?: string
+  animationFrom?: AnimationSnapshot
+  animationTo?: AnimationSnapshot[]
+  easing?: EasingFunction
+  onAnimationComplete?: () => void
+  stepDuration?: number
 }
 
 const BlurText = ({
@@ -22,10 +46,10 @@ const BlurText = ({
   easing = t => t,
   onAnimationComplete,
   stepDuration = 0.35,
-}) => {
+}: BlurTextProps) => {
   const elements = animateBy === 'words' ? text.split(' ') : text.split('')
   const [inView, setInView] = useState(false)
-  const ref = useRef(null)
+  const ref = useRef<HTMLParagraphElement>(null)
 
   useEffect(() => {
     if (!ref.current) return
@@ -33,7 +57,7 @@ const BlurText = ({
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true)
-          observer.unobserve(ref.current)
+          observer.unobserve(ref.current!)
         }
       },
       { threshold, rootMargin },
@@ -76,7 +100,7 @@ const BlurText = ({
         return (
           <motion.span
             className="inline-block"
-            style={{ willChange: 'transform, filter, opacity' }}
+            style={{ willChange: 'transform, filter, opacity' } as CSSProperties}
             key={index}
             initial={fromSnapshot}
             animate={inView ? animateKeyframes : fromSnapshot}

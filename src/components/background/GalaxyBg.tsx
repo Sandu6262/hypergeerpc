@@ -153,7 +153,7 @@ void main() {
 `
 
 export default function GalaxyBg() {
-  const ctnRef = useRef(null)
+  const ctnRef = useRef<HTMLDivElement>(null)
   const targetMousePos = useRef({ x: 0.5, y: 0.5 })
   const smoothMousePos = useRef({ x: 0.5, y: 0.5 })
   const targetMouseActive = useRef(0.0)
@@ -170,7 +170,7 @@ export default function GalaxyBg() {
     const gl = renderer.gl
     gl.clearColor(0, 0, 0, 1)
 
-    let program
+    let program: InstanceType<typeof Program>
 
     function resize() {
       if (!ctn) return
@@ -194,12 +194,12 @@ export default function GalaxyBg() {
         uFocal:              { value: new Float32Array([0.5, 0.5]) },
         uRotation:           { value: new Float32Array([1.0, 0.0]) },
         uStarSpeed:          { value: 0.5 },
-        uDensity:            { value: 0.4 },       // from URL param
-        uHueShift:           { value: 55.0 },      // yellow hue (60° = pure yellow)
+        uDensity:            { value: 0.4 },
+        uHueShift:           { value: 55.0 },
         uSpeed:              { value: 1.0 },
         uMouse:              { value: new Float32Array([0.5, 0.5]) },
-        uGlowIntensity:      { value: 0.1 },       // from URL param
-        uSaturation:         { value: 1.2 },       // mix of yellow + white stars
+        uGlowIntensity:      { value: 0.1 },
+        uSaturation:         { value: 1.2 },
         uMouseRepulsion:     { value: false },
         uTwinkleIntensity:   { value: 0.5 },
         uRotationSpeed:      { value: 0.05 },
@@ -215,8 +215,8 @@ export default function GalaxyBg() {
     gl.canvas.style.width = '100%'
     gl.canvas.style.height = '100%'
 
-    let animateId
-    function update(t) {
+    let animateId: number
+    function update(t: number) {
       animateId = requestAnimationFrame(update)
       program.uniforms.uTime.value = t * 0.001
       program.uniforms.uStarSpeed.value = (t * 0.001 * 0.5) / 10.0

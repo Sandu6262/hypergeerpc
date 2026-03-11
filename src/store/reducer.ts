@@ -1,4 +1,33 @@
-export const initialState = {
+import { SelectedComponentsMap } from '@/lib/autoBuild'
+
+export interface CartItem {
+  id: number
+  name: string
+  desc: string
+  price: number
+}
+
+export interface State {
+  cart: CartItem[]
+  selectedComps: SelectedComponentsMap
+  budgetMax: number
+  cartOpen: boolean
+  toastMessage: string
+  toastVisible: boolean
+}
+
+export type Action =
+  | { type: 'ADD_TO_CART'; payload: CartItem }
+  | { type: 'REMOVE_FROM_CART'; payload: number }
+  | { type: 'CLEAR_CART' }
+  | { type: 'SET_COMPONENTS'; payload: SelectedComponentsMap }
+  | { type: 'SET_BUDGET'; payload: number }
+  | { type: 'TOGGLE_CART' }
+  | { type: 'CLOSE_CART' }
+  | { type: 'SHOW_TOAST'; payload: string }
+  | { type: 'HIDE_TOAST' }
+
+export const initialState: State = {
   cart: [],
   selectedComps: {},
   budgetMax: 95000,
@@ -7,7 +36,7 @@ export const initialState = {
   toastVisible: false,
 }
 
-export function appReducer(state, action) {
+export function appReducer(state: State, action: Action): State {
   switch (action.type) {
     case 'ADD_TO_CART':
       return { ...state, cart: [...state.cart, action.payload] }

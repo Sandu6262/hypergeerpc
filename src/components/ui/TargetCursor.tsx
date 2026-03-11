@@ -8,14 +8,21 @@ const CORNER_SIZE = 10
 const IDLE_GAP = 14
 const HOVER_PADDING = 8
 
+interface TargetCursorProps {
+  targetSelector?: string
+  spinDuration?: number
+  hoverDuration?: number
+  hideDefaultCursor?: boolean
+}
+
 export default function TargetCursor({
   targetSelector = '.cursor-target',
   spinDuration = 4,
   hoverDuration = 0.25,
   hideDefaultCursor = true,
-}) {
-  const wrapperRef = useRef(null)
-  const cornersRef = useRef([])
+}: TargetCursorProps) {
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const cornersRef = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -26,7 +33,7 @@ export default function TargetCursor({
 
     if (hideDefaultCursor) document.body.style.cursor = 'none'
 
-    const corners = cornersRef.current.filter(Boolean)
+    const corners = cornersRef.current.filter(Boolean) as HTMLDivElement[]
 
     const idlePos = [
       { x: -IDLE_GAP, y: -IDLE_GAP },
@@ -45,10 +52,10 @@ export default function TargetCursor({
       ease: 'none',
     })
 
-    let delayedSpin = null
+    let delayedSpin: gsap.core.Tween | null = null
     let isHovering = false
 
-    const onMouseMove = (e) => {
+    const onMouseMove = (e: MouseEvent) => {
       gsap.set(wrapper, { opacity: 1 })
       if (!isHovering) {
         gsap.to(wrapper, {
@@ -61,8 +68,8 @@ export default function TargetCursor({
       }
     }
 
-    const onMouseEnter = (e) => {
-      const el = e.currentTarget
+    const onMouseEnter = (e: Event) => {
+      const el = (e as MouseEvent).currentTarget as HTMLElement
       const rect = el.getBoundingClientRect()
       isHovering = true
 

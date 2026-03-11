@@ -10,7 +10,7 @@ export default function CartSidebar() {
   const { cart, cartOpen } = state
 
   useEffect(() => {
-    const handler = (e) => { if (e.key === 'Escape') closeCart() }
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') closeCart() }
     document.addEventListener('keydown', handler)
     return () => document.removeEventListener('keydown', handler)
   }, [closeCart])

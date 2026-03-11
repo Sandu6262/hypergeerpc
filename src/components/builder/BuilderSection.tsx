@@ -4,18 +4,24 @@ import { useEffect, useCallback, useRef } from 'react'
 import {
   Cpu, Layers, Database, HardDrive, CircuitBoard,
   Zap, Package, Wind, Settings, Wrench, BarChart2,
-  ShoppingCart, RotateCcw,
+  ShoppingCart, RotateCcw, LucideIcon,
 } from 'lucide-react'
 import { useStore } from '@/store/StoreContext'
 import { ParticleCard, MagicBentoSpotlight } from '@/components/ui/ParticleCard'
-import { components, typeLabels } from '@/data/components'
+import { components, typeLabels, ComponentType } from '@/data/components'
 import { autoBuildWithinBudget } from '@/lib/autoBuild'
 import { computeRatings } from '@/lib/ratings'
 import { formatPrice } from '@/lib/formatPrice'
 
-const ORDER = ['gpu', 'cpu', 'ram', 'storage', 'mobo', 'psu', 'cooling', 'case']
+const ORDER: ComponentType[] = ['gpu', 'cpu', 'ram', 'storage', 'mobo', 'psu', 'cooling', 'case']
 
-const groupMeta = [
+interface GroupMeta {
+  type: ComponentType
+  Icon: LucideIcon
+  label: string
+}
+
+const groupMeta: GroupMeta[] = [
   { type: 'cpu',     Icon: Cpu,          label: 'Procesor (CPU)' },
   { type: 'gpu',     Icon: Layers,       label: 'Placa Video (GPU)' },
   { type: 'ram',     Icon: Database,     label: 'Memorie RAM' },
@@ -27,7 +33,7 @@ const groupMeta = [
 ]
 
 export default function BuilderSection() {
-  const gridRef = useRef(null)
+  const gridRef = useRef<HTMLDivElement>(null)
   const { state, setComponents, setBudget, addToCart, showToast } = useStore()
   const { selectedComps, budgetMax } = state
 
@@ -35,11 +41,11 @@ export default function BuilderSection() {
     setComponents(autoBuildWithinBudget(budgetMax))
   }, [budgetMax, setComponents])
 
-  const handleBudget = useCallback((val) => {
+  const handleBudget = useCallback((val: number) => {
     setBudget(val)
   }, [setBudget])
 
-  function selectComp(type, comp) {
+  function selectComp(type: ComponentType, comp: any) {
     setComponents({ ...selectedComps, [type]: { ...comp, type } })
   }
 
@@ -51,28 +57,28 @@ export default function BuilderSection() {
   function addBuildToCart() {
     const items = Object.values(selectedComps).filter(Boolean)
     if (!items.length) { showToast('Selecteaza cel putin o componenta!'); return }
-    const total = items.reduce((s, c) => s + c.price, 0)
-    const desc = items.slice(0, 3).map(c => c.name).join(', ') + (items.length > 3 ? '...' : '')
+    const total = items.reduce((s, c) => s + c!.price, 0)
+    const desc = items.slice(0, 3).map(c => c!.name).join(', ') + (items.length > 3 ? '...' : '')
     addToCart({ id: Date.now() + Math.random(), name: 'Custom Build', desc, price: total })
     showToast(`Custom Build (${formatPrice(total)}) adaugat in cos!`)
   }
 
   const items = Object.values(selectedComps).filter(Boolean)
-  const total = items.reduce((s, c) => s + c.price, 0)
-  const ratings = computeRatings(items)
+  const total = items.reduce((s, c) => s + c!.price, 0)
+  const ratings = computeRatings(items as any[])
   const progressPct = Math.min((total / budgetMax) * 100, 100)
   const progressColor = total > budgetMax
     ? 'linear-gradient(90deg,#ff4444,#ff8800)'
     : 'linear-gradient(135deg,#8B00FF,#FF1493)'
   const remaining = budgetMax - total
 
-  function isOverBudget(type, comp) {
+  function isOverBudget(type: ComponentType, comp: any) {
     const current = selectedComps[type]
     if (current?.name === comp.name) return false
     return comp.price > remaining + (current?.price ?? 0)
   }
 
-  function isVisible(type, comp) {
+  function isVisible(_type: ComponentType, comp: any) {
     return comp.price <= budgetMax || comp.price === 0
   }
 
@@ -156,13 +162,13 @@ export default function BuilderSection() {
                   </div>
                 ) : (
                   items.map(c => (
-                    <div key={c.type} className="summary-item">
+                    <div key={c!.type} className="summary-item">
                       <div className="si-left">
-                        <span className="si-cat">{typeLabels[c.type]}</span>
-                        <span className="si-name">{c.name}</span>
+                        <span className="si-cat">{typeLabels[c!.type as ComponentType]}</span>
+                        <span className="si-name">{c!.name}</span>
                       </div>
                       <span className="si-price">
-                        {c.price === 0 ? 'Inclus' : formatPrice(c.price)}
+                        {c!.price === 0 ? 'Inclus' : formatPrice(c!.price)}
                       </span>
                     </div>
                   ))

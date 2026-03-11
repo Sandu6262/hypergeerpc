@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react'
 const COLORS = ['#EDB600', '#FFCF3F', '#FFE580', '#FFFFFF', '#FFF0A0', '#ffffff']
 
 export default function BgStars() {
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const container = ref.current

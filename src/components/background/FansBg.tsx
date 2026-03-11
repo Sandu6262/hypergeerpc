@@ -3,7 +3,13 @@
 const KH = 24
 const G  = 2
 
-function row(keys, base = 0) {
+interface KeyDef {
+  label: string
+  w: number
+  delay: number
+}
+
+function row(keys: [string, number][], base = 0): KeyDef[] {
   let col = 0
   return keys.map(([label, w]) => ({ label, w, delay: +(base + col++ * 0.15).toFixed(2) }))
 }

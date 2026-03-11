@@ -106,7 +106,7 @@ const BLEND = 0.6
 const SPEED = 1.0
 
 export default function AuroraBg() {
-  const ctnRef = useRef(null)
+  const ctnRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const ctn = ctnRef.current
@@ -129,7 +129,7 @@ export default function AuroraBg() {
     const geometry = new Triangle(gl)
     if (geometry.attributes.uv) delete geometry.attributes.uv
 
-    let program
+    let program: InstanceType<typeof Program>
     program = new Program(gl, {
       vertex: VERT,
       fragment: FRAG,
@@ -154,7 +154,7 @@ export default function AuroraBg() {
     resize()
 
     let animateId = 0
-    const update = (t) => {
+    const update = (t: number) => {
       animateId = requestAnimationFrame(update)
       program.uniforms.uTime.value = t * 0.001 * SPEED * 0.1
       renderer.render({ scene: mesh })

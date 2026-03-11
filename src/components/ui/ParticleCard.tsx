@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useEffect, useCallback, useState, createContext, useContext } from 'react'
+import { useRef, useEffect, useCallback, useState, createContext, useContext, ReactNode, CSSProperties, RefObject } from 'react'
 import { gsap } from 'gsap'
 import './ParticleCard.css'
 
@@ -9,10 +9,14 @@ const PARTICLE_COUNT = 10
 const SPOTLIGHT_RADIUS = 280
 
 // ── Spotlight context (shares gridRef across cards) ──────────────────────────
-const GridRefContext = createContext({ current: null })
+const GridRefContext = createContext<RefObject<HTMLDivElement | null>>({ current: null })
 
 // ── GlobalSpotlight ──────────────────────────────────────────────────────────
-export function MagicBentoSpotlight({ gridRef }) {
+interface MagicBentoSpotlightProps {
+  gridRef: RefObject<HTMLDivElement | null>
+}
+
+export function MagicBentoSpotlight({ gridRef }: MagicBentoSpotlightProps) {
   useEffect(() => {
     const spotlight = document.createElement('div')
     spotlight.className = 'global-spotlight'
@@ -29,13 +33,13 @@ export function MagicBentoSpotlight({ gridRef }) {
 
     if (window.matchMedia('(pointer: coarse)').matches) return
 
-    const onMove = (e) => {
+    const onMove = (e: MouseEvent) => {
       if (!gridRef.current) return
       const section = gridRef.current.closest('.bento-section')
       const rect = section?.getBoundingClientRect()
       const inside = rect && e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom
 
-      const cards = gridRef.current.querySelectorAll('.particle-card')
+      const cards = gridRef.current.querySelectorAll<HTMLElement>('.particle-card')
 
       if (!inside) {
         gsap.to(spotlight, { opacity: 0, duration: 0.3 })
@@ -65,7 +69,7 @@ export function MagicBentoSpotlight({ gridRef }) {
 
     const onLeave = () => {
       gsap.to(spotlight, { opacity: 0, duration: 0.3 })
-      gridRef.current?.querySelectorAll('.particle-card').forEach(c => c.style.setProperty('--glow-intensity', '0'))
+      gridRef.current?.querySelectorAll<HTMLElement>('.particle-card').forEach(c => c.style.setProperty('--glow-intensity', '0'))
     }
 
     document.addEventListener('mousemove', onMove)
@@ -81,12 +85,18 @@ export function MagicBentoSpotlight({ gridRef }) {
 }
 
 // ── ParticleCard ─────────────────────────────────────────────────────────────
-export function ParticleCard({ children, className = '', style }) {
-  const cardRef = useRef(null)
-  const particlesRef = useRef([])
-  const timeoutsRef = useRef([])
+interface ParticleCardProps {
+  children: ReactNode
+  className?: string
+  style?: CSSProperties
+}
+
+export function ParticleCard({ children, className = '', style }: ParticleCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const particlesRef = useRef<HTMLElement[]>([])
+  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([])
   const isHovered = useRef(false)
-  const magnetAnim = useRef(null)
+  const magnetAnim = useRef<gsap.core.Tween | null>(null)
   const [, setMobile] = useState(false)
 
   useEffect(() => {
@@ -144,7 +154,7 @@ export function ParticleCard({ children, className = '', style }) {
       clearParticles()
       gsap.to(el, { rotateX: 0, rotateY: 0, x: 0, y: 0, duration: 0.3, ease: 'power2.out' })
     }
-    const onMove = (e) => {
+    const onMove = (e: MouseEvent) => {
       const rect = el.getBoundingClientRect()
       const x = e.clientX - rect.left
       const y = e.clientY - rect.top
@@ -152,7 +162,7 @@ export function ParticleCard({ children, className = '', style }) {
       gsap.to(el, { rotateX: ((y - cy) / cy) * -8, rotateY: ((x - cx) / cx) * 8, duration: 0.1, ease: 'power2.out', transformPerspective: 1000 })
       magnetAnim.current = gsap.to(el, { x: (x - cx) * 0.04, y: (y - cy) * 0.04, duration: 0.3, ease: 'power2.out' })
     }
-    const onClick = (e) => {
+    const onClick = (e: MouseEvent) => {
       const rect = el.getBoundingClientRect()
       const x = e.clientX - rect.left, y = e.clientY - rect.top
       const maxD = Math.max(Math.hypot(x, y), Math.hypot(x - rect.width, y), Math.hypot(x, y - rect.height), Math.hypot(x - rect.width, y - rect.height))
@@ -180,7 +190,7 @@ export function ParticleCard({ children, className = '', style }) {
     <div
       ref={cardRef}
       className={`particle-card ${className}`}
-      style={{ ...style, '--glow-color': GLOW_COLOR }}
+      style={{ ...style, '--glow-color': GLOW_COLOR } as CSSProperties}
     >
       {children}
     </div>

@@ -1,6 +1,13 @@
-import { Phone, Mail, MapPin, Clock } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, LucideIcon } from 'lucide-react'
 
-const contacts = [
+interface ContactItem {
+  Icon: LucideIcon
+  title: string
+  text: string
+  small: string
+}
+
+const contacts: ContactItem[] = [
   { Icon: Phone, title: 'Telefon',  text: '+40 700 123 456',    small: 'Luni - Vineri' },
   { Icon: Mail,  title: 'Email',    text: 'contact@neontech.ro', small: 'Raspuns in 24h' },
   { Icon: MapPin, title: 'Adresa',  text: 'Str. Informaticii 7', small: 'Chisinau, Moldova' },

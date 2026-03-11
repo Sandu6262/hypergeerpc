@@ -1,17 +1,25 @@
 'use client'
 
 import { useState } from 'react'
-import { Star, TrendingDown, TrendingUp, Zap } from 'lucide-react'
-import { prebuiltPCs } from '@/data/prebuiltPCs'
+import { Star, TrendingDown, TrendingUp, Zap, LucideIcon } from 'lucide-react'
+import { prebuiltPCs, PrebuiltPC } from '@/data/prebuiltPCs'
 import PCCard from './PCCard'
 
-const filterFns = {
+type FilterId = 'all' | 'low' | 'mid' | 'high'
+
+const filterFns: Record<Exclude<FilterId, 'all'>, (pc: PrebuiltPC) => boolean> = {
   low:  pc => pc.price < 14000,
   mid:  pc => pc.price >= 14000 && pc.price <= 38000,
   high: pc => pc.price > 38000,
 }
 
-const filterButtons = [
+interface FilterButton {
+  id: FilterId
+  label: string
+  Icon: LucideIcon
+}
+
+const filterButtons: FilterButton[] = [
   { id: 'all',  label: 'Toate',             Icon: Star },
   { id: 'low',  label: 'Buget Mic (<14K)',   Icon: TrendingDown },
   { id: 'mid',  label: 'Buget Mediu (14-38K)', Icon: TrendingUp },
@@ -19,7 +27,7 @@ const filterButtons = [
 ]
 
 export default function PrebuiltSection() {
-  const [filter, setFilter] = useState('all')
+  const [filter, setFilter] = useState<FilterId>('all')
 
   const list = filter === 'all' ? prebuiltPCs : prebuiltPCs.filter(filterFns[filter])
 

@@ -1,4 +1,24 @@
-export const prebuiltPCs = [
+export interface PCSpec {
+  icon: string
+  name: string
+  val: string
+}
+
+export interface PrebuiltPC {
+  id: number
+  name: string
+  cat: string
+  price: number
+  level: 'low' | 'mid' | 'high'
+  badge: string
+  badgeText: string
+  emoji: string
+  img: string
+  imgPos: string
+  specs: PCSpec[]
+}
+
+export const prebuiltPCs: PrebuiltPC[] = [
   {
     id: 1, name: 'Starter Pack', cat: 'Gaming Entry-Level',
     price: 9500, level: 'low', badge: 'starter', badgeText: 'Buget Mic', emoji: '💻',

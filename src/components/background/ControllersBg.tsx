@@ -43,7 +43,7 @@ const PS = `<svg viewBox="0 0 100 58" xmlns="http://www.w3.org/2000/svg">
 const DRIFTS = ['ctrl-drift-1','ctrl-drift-2','ctrl-drift-3','ctrl-drift-4','ctrl-drift-5']
 
 export default function ControllersBg() {
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const container = ref.current
@@ -54,7 +54,7 @@ export default function ControllersBg() {
       ...Array(14).fill('ps'),
     ]
 
-    items.forEach((type) => {
+    items.forEach((type: string) => {
       const size  = 55 + Math.random() * 70
       const left  = Math.random() * 98
       const top   = Math.random() * 98
@@ -86,12 +86,15 @@ export default function ControllersBg() {
         color:inherit;
       `
       inner.innerHTML = type === 'xbox' ? XBOX : PS
-      inner.querySelector('svg').style.cssText = `
-        width:${size}px;
-        height:auto;
-        display:block;
-        filter:drop-shadow(0 0 6px rgba(237,182,0,0.4));
-      `
+      const svg = inner.querySelector('svg')
+      if (svg) {
+        svg.style.cssText = `
+          width:${size}px;
+          height:auto;
+          display:block;
+          filter:drop-shadow(0 0 6px rgba(237,182,0,0.4));
+        `
+      }
 
       wrapper.appendChild(inner)
       container.appendChild(wrapper)

@@ -1,4 +1,20 @@
-export const components = {
+export interface ComponentScore {
+  g: number
+  p: number
+  v: number
+}
+
+export interface Component {
+  name: string
+  price: number
+  sc: ComponentScore
+}
+
+export type ComponentType = 'cpu' | 'gpu' | 'ram' | 'storage' | 'mobo' | 'psu' | 'case' | 'cooling'
+
+export type ComponentsMap = Record<ComponentType, Component[]>
+
+export const components: ComponentsMap = {
   cpu: [
     { name: 'AMD Ryzen 5 5500 Tray',       price: 1799,  sc: { g: 50, p: 55, v: 95 } },
     { name: 'AMD Ryzen 5 5600 Tray',       price: 2489,  sc: { g: 58, p: 62, v: 90 } },
@@ -64,7 +80,7 @@ export const components = {
   ],
 }
 
-export const typeLabels = {
+export const typeLabels: Record<ComponentType, string> = {
   cpu: 'CPU',
   gpu: 'GPU',
   ram: 'RAM',

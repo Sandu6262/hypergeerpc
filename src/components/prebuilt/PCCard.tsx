@@ -3,14 +3,15 @@
 import { useState } from 'react'
 import {
   Cpu, Layers, Database, HardDrive, CircuitBoard,
-  Zap, Package, Wind, Monitor, ShoppingCart,
+  Zap, Package, Wind, Monitor, ShoppingCart, LucideIcon,
 } from 'lucide-react'
 import { formatPrice } from '@/lib/formatPrice'
 import { assetPath } from '@/lib/assetPath'
 import { useStore } from '@/store/StoreContext'
 import ElectricBorder from '@/components/ui/ElectricBorder'
+import { PrebuiltPC } from '@/data/prebuiltPCs'
 
-const specIconMap = {
+const specIconMap: Record<string, LucideIcon> = {
   CPU:     Cpu,
   GPU:     Layers,
   RAM:     Database,
@@ -21,7 +22,13 @@ const specIconMap = {
   Racire:  Wind,
 }
 
-export default function PCCard({ pc, highlight, index }) {
+interface PCCardProps {
+  pc: PrebuiltPC
+  highlight: boolean
+  index: number
+}
+
+export default function PCCard({ pc, highlight, index }: PCCardProps) {
   const { addToCart, showToast } = useStore()
   const [imgError, setImgError] = useState(false)
 
