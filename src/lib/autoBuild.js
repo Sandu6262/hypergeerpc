@@ -1,11 +1,10 @@
 import { components } from '@/data/components'
-import { ComponentType, SelectedComps } from '@/data/types'
 
-const ORDER: ComponentType[] = ['gpu', 'cpu', 'ram', 'storage', 'mobo', 'psu', 'cooling', 'case']
+const ORDER = ['gpu', 'cpu', 'ram', 'storage', 'mobo', 'psu', 'cooling', 'case']
 
-export function autoBuildWithinBudget(budget: number): SelectedComps {
+export function autoBuildWithinBudget(budget) {
   // Step 1: assign cheapest from each category
-  const chosen: Record<string, { name: string; price: number; sc: { g: number; p: number; v: number } }> = {}
+  const chosen = {}
   let remaining = budget
 
   ORDER.forEach(type => {
@@ -32,8 +31,8 @@ export function autoBuildWithinBudget(budget: number): SelectedComps {
     })
   }
 
-  // Step 3: return typed selection
-  const result: SelectedComps = {}
+  // Step 3: return selection
+  const result = {}
   ORDER.forEach(type => {
     result[type] = { ...chosen[type], type }
   })

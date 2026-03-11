@@ -153,7 +153,7 @@ void main() {
 `
 
 export default function GalaxyBg() {
-  const ctnRef = useRef<HTMLDivElement>(null)
+  const ctnRef = useRef(null)
   const targetMousePos = useRef({ x: 0.5, y: 0.5 })
   const smoothMousePos = useRef({ x: 0.5, y: 0.5 })
   const targetMouseActive = useRef(0.0)
@@ -170,7 +170,7 @@ export default function GalaxyBg() {
     const gl = renderer.gl
     gl.clearColor(0, 0, 0, 1)
 
-    let program: any
+    let program
 
     function resize() {
       if (!ctn) return
@@ -215,8 +215,8 @@ export default function GalaxyBg() {
     gl.canvas.style.width = '100%'
     gl.canvas.style.height = '100%'
 
-    let animateId: number
-    function update(t: number) {
+    let animateId
+    function update(t) {
       animateId = requestAnimationFrame(update)
       program.uniforms.uTime.value = t * 0.001
       program.uniforms.uStarSpeed.value = (t * 0.001 * 0.5) / 10.0

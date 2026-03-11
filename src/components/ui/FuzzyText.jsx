@@ -1,28 +1,6 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
 
-interface FuzzyTextProps {
-  children: React.ReactNode
-  fontSize?: string | number
-  fontWeight?: number
-  fontFamily?: string
-  color?: string
-  enableHover?: boolean
-  baseIntensity?: number
-  hoverIntensity?: number
-  fuzzRange?: number
-  fps?: number
-  direction?: 'horizontal' | 'vertical' | 'both'
-  transitionDuration?: number
-  clickEffect?: boolean
-  glitchMode?: boolean
-  glitchInterval?: number
-  glitchDuration?: number
-  gradient?: string[] | null
-  letterSpacing?: number
-  className?: string
-}
-
 const FuzzyText = ({
   children,
   fontSize = 'clamp(2rem, 10vw, 10rem)',
@@ -43,8 +21,8 @@ const FuzzyText = ({
   gradient = null,
   letterSpacing = 0,
   className = '',
-}: FuzzyTextProps) => {
-  const canvasRef = useRef<HTMLCanvasElement & { cleanupFuzzyText?: () => void }>(null)
+}) => {
+  const canvasRef = useRef(null)
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -52,11 +30,11 @@ const FuzzyText = ({
   }, [])
 
   useEffect(() => {
-    let animationFrameId: number
+    let animationFrameId
     let isCancelled = false
-    let glitchTimeoutId: ReturnType<typeof setTimeout>
-    let glitchEndTimeoutId: ReturnType<typeof setTimeout>
-    let clickTimeoutId: ReturnType<typeof setTimeout>
+    let glitchTimeoutId
+    let glitchEndTimeoutId
+    let clickTimeoutId
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -73,7 +51,7 @@ const FuzzyText = ({
       try { await document.fonts.load(fontString) } catch { await document.fonts.ready }
       if (isCancelled) return
 
-      let numericFontSize: number
+      let numericFontSize
       if (typeof fontSize === 'number') {
         numericFontSize = fontSize
       } else {
@@ -171,7 +149,7 @@ const FuzzyText = ({
       }
       if (glitchMode) startGlitchLoop()
 
-      const run = (timestamp: number) => {
+      const run = (timestamp) => {
         if (isCancelled) return
         if (timestamp - lastFrameTime < frameDuration) {
           animationFrameId = window.requestAnimationFrame(run)
@@ -223,10 +201,10 @@ const FuzzyText = ({
       }
       animationFrameId = window.requestAnimationFrame(run)
 
-      const isInside = (x: number, y: number) =>
+      const isInside = (x, y) =>
         x >= interactiveLeft && x <= interactiveRight && y >= interactiveTop && y <= interactiveBottom
 
-      const handleMouseMove = (e: MouseEvent) => {
+      const handleMouseMove = (e) => {
         if (!enableHover) return
         const rect = canvas.getBoundingClientRect()
         isHovering = isInside(e.clientX - rect.left, e.clientY - rect.top)
@@ -238,7 +216,7 @@ const FuzzyText = ({
         clearTimeout(clickTimeoutId)
         clickTimeoutId = setTimeout(() => { isClicking = false }, 150)
       }
-      const handleTouchMove = (e: TouchEvent) => {
+      const handleTouchMove = (e) => {
         if (!enableHover) return
         e.preventDefault()
         const rect = canvas.getBoundingClientRect()

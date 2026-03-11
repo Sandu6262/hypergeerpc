@@ -61,18 +61,18 @@ struct ColorStop {
   float position;
 };
 
-#define COLOR_RAMP(colors, factor, finalColor) {              \
-  int index = 0;                                             \
-  for (int i = 0; i < 2; i++) {                              \
-    ColorStop currentColor = colors[i];                      \
-    bool isInBetween = currentColor.position <= factor;      \
-    index = int(mix(float(index), float(i), float(isInBetween))); \
-  }                                                          \
-  ColorStop currentColor = colors[index];                    \
-  ColorStop nextColor = colors[index + 1];                   \
-  float range = nextColor.position - currentColor.position;  \
-  float lerpFactor = (factor - currentColor.position) / range; \
-  finalColor = mix(currentColor.color, nextColor.color, lerpFactor); \
+#define COLOR_RAMP(colors, factor, finalColor) {              \\
+  int index = 0;                                             \\
+  for (int i = 0; i < 2; i++) {                              \\
+    ColorStop currentColor = colors[i];                      \\
+    bool isInBetween = currentColor.position <= factor;      \\
+    index = int(mix(float(index), float(i), float(isInBetween))); \\
+  }                                                          \\
+  ColorStop currentColor = colors[index];                    \\
+  ColorStop nextColor = colors[index + 1];                   \\
+  float range = nextColor.position - currentColor.position;  \\
+  float lerpFactor = (factor - currentColor.position) / range; \\
+  finalColor = mix(currentColor.color, nextColor.color, lerpFactor); \\
 }
 
 void main() {
@@ -100,13 +100,13 @@ void main() {
 `
 
 // Brand colors: yellow → gold → yellow, subtle aurora on black background
-const COLOR_STOPS: [string, string, string] = ['#EDB600', '#FFD97D', '#B88A00']
+const COLOR_STOPS = ['#EDB600', '#FFD97D', '#B88A00']
 const AMPLITUDE = 1.0
 const BLEND = 0.6
 const SPEED = 1.0
 
 export default function AuroraBg() {
-  const ctnRef = useRef<HTMLDivElement>(null)
+  const ctnRef = useRef(null)
 
   useEffect(() => {
     const ctn = ctnRef.current
@@ -127,9 +127,9 @@ export default function AuroraBg() {
     })
 
     const geometry = new Triangle(gl)
-    if ((geometry as any).attributes.uv) delete (geometry as any).attributes.uv
+    if (geometry.attributes.uv) delete geometry.attributes.uv
 
-    let program: any
+    let program
     program = new Program(gl, {
       vertex: VERT,
       fragment: FRAG,
@@ -154,7 +154,7 @@ export default function AuroraBg() {
     resize()
 
     let animateId = 0
-    const update = (t: number) => {
+    const update = (t) => {
       animateId = requestAnimationFrame(update)
       program.uniforms.uTime.value = t * 0.001 * SPEED * 0.1
       renderer.render({ scene: mesh })

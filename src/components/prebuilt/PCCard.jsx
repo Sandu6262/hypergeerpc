@@ -5,14 +5,12 @@ import {
   Cpu, Layers, Database, HardDrive, CircuitBoard,
   Zap, Package, Wind, Monitor, ShoppingCart,
 } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
-import { PrebuiltPC } from '@/data/types'
 import { formatPrice } from '@/lib/formatPrice'
 import { assetPath } from '@/lib/assetPath'
 import { useStore } from '@/store/StoreContext'
 import ElectricBorder from '@/components/ui/ElectricBorder'
 
-const specIconMap: Record<string, LucideIcon> = {
+const specIconMap = {
   CPU:     Cpu,
   GPU:     Layers,
   RAM:     Database,
@@ -23,13 +21,7 @@ const specIconMap: Record<string, LucideIcon> = {
   Racire:  Wind,
 }
 
-interface Props {
-  pc: PrebuiltPC
-  highlight: boolean
-  index: number
-}
-
-export default function PCCard({ pc, highlight, index }: Props) {
+export default function PCCard({ pc, highlight, index }) {
   const { addToCart, showToast } = useStore()
   const [imgError, setImgError] = useState(false)
 

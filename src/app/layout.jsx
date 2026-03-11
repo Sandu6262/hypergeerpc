@@ -1,4 +1,3 @@
-import type { Metadata, Viewport } from 'next'
 import { Orbitron, Rajdhani } from 'next/font/google'
 import './globals.css'
 import { StoreProvider } from '@/store/StoreContext'
@@ -26,19 +25,19 @@ const rajdhani = Rajdhani({
 
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
-export const viewport: Viewport = {
+export const viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
 }
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'HypergeeRPC - Calculatoare & PC Builder',
   description: 'Cumpara calculatoare prefabricate sau construieste-l pe al tau. Componente premium, preturi accesibile, design RGB.',
   icons: { icon: `${BASE}/favicon.svg` },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="ro" className={`${orbitron.variable} ${rajdhani.variable}`}>
       <body>

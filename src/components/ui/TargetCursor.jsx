@@ -4,13 +4,6 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import './TargetCursor.css'
 
-interface Props {
-  targetSelector?: string
-  spinDuration?: number
-  hoverDuration?: number
-  hideDefaultCursor?: boolean
-}
-
 const CORNER_SIZE = 10
 const IDLE_GAP = 14
 const HOVER_PADDING = 8
@@ -20,9 +13,9 @@ export default function TargetCursor({
   spinDuration = 4,
   hoverDuration = 0.25,
   hideDefaultCursor = true,
-}: Props) {
-  const wrapperRef = useRef<HTMLDivElement>(null)
-  const cornersRef = useRef<(HTMLDivElement | null)[]>([])
+}) {
+  const wrapperRef = useRef(null)
+  const cornersRef = useRef([])
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -33,7 +26,7 @@ export default function TargetCursor({
 
     if (hideDefaultCursor) document.body.style.cursor = 'none'
 
-    const corners = cornersRef.current.filter(Boolean) as HTMLDivElement[]
+    const corners = cornersRef.current.filter(Boolean)
 
     const idlePos = [
       { x: -IDLE_GAP, y: -IDLE_GAP },
@@ -52,10 +45,10 @@ export default function TargetCursor({
       ease: 'none',
     })
 
-    let delayedSpin: gsap.core.Tween | null = null
+    let delayedSpin = null
     let isHovering = false
 
-    const onMouseMove = (e: MouseEvent) => {
+    const onMouseMove = (e) => {
       gsap.set(wrapper, { opacity: 1 })
       if (!isHovering) {
         gsap.to(wrapper, {
@@ -68,8 +61,8 @@ export default function TargetCursor({
       }
     }
 
-    const onMouseEnter = (e: Event) => {
-      const el = e.currentTarget as HTMLElement
+    const onMouseEnter = (e) => {
+      const el = e.currentTarget
       const rect = el.getBoundingClientRect()
       isHovering = true
 
@@ -117,7 +110,7 @@ export default function TargetCursor({
     }
 
     const attachEvents = () => {
-      document.querySelectorAll<HTMLElement>(targetSelector).forEach(el => {
+      document.querySelectorAll(targetSelector).forEach(el => {
         el.removeEventListener('mouseenter', onMouseEnter)
         el.removeEventListener('mouseleave', onMouseLeave)
         el.addEventListener('mouseenter', onMouseEnter)
@@ -133,7 +126,7 @@ export default function TargetCursor({
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove)
-      document.querySelectorAll<HTMLElement>(targetSelector).forEach(el => {
+      document.querySelectorAll(targetSelector).forEach(el => {
         el.removeEventListener('mouseenter', onMouseEnter)
         el.removeEventListener('mouseleave', onMouseLeave)
       })
@@ -148,7 +141,7 @@ export default function TargetCursor({
   return (
     <div ref={wrapperRef} className="target-cursor-wrapper">
       <div className="target-cursor-dot" />
-      {(['tl', 'tr', 'bl', 'br'] as const).map((pos, i) => (
+      {(['tl', 'tr', 'bl', 'br']).map((pos, i) => (
         <div
           key={pos}
           className={`target-cursor-corner ${pos}`}

@@ -6,18 +6,16 @@ import {
   Zap, Package, Wind, Settings, Wrench, BarChart2,
   ShoppingCart, RotateCcw,
 } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
 import { useStore } from '@/store/StoreContext'
 import { ParticleCard, MagicBentoSpotlight } from '@/components/ui/ParticleCard'
 import { components, typeLabels } from '@/data/components'
-import { ComponentType, ComponentSpec, SelectedComps } from '@/data/types'
 import { autoBuildWithinBudget } from '@/lib/autoBuild'
 import { computeRatings } from '@/lib/ratings'
 import { formatPrice } from '@/lib/formatPrice'
 
-const ORDER: ComponentType[] = ['gpu', 'cpu', 'ram', 'storage', 'mobo', 'psu', 'cooling', 'case']
+const ORDER = ['gpu', 'cpu', 'ram', 'storage', 'mobo', 'psu', 'cooling', 'case']
 
-const groupMeta: { type: ComponentType; Icon: LucideIcon; label: string }[] = [
+const groupMeta = [
   { type: 'cpu',     Icon: Cpu,          label: 'Procesor (CPU)' },
   { type: 'gpu',     Icon: Layers,       label: 'Placa Video (GPU)' },
   { type: 'ram',     Icon: Database,     label: 'Memorie RAM' },
@@ -29,7 +27,7 @@ const groupMeta: { type: ComponentType; Icon: LucideIcon; label: string }[] = [
 ]
 
 export default function BuilderSection() {
-  const gridRef = useRef<HTMLDivElement>(null)
+  const gridRef = useRef(null)
   const { state, setComponents, setBudget, addToCart, showToast } = useStore()
   const { selectedComps, budgetMax } = state
 
@@ -37,11 +35,11 @@ export default function BuilderSection() {
     setComponents(autoBuildWithinBudget(budgetMax))
   }, [budgetMax, setComponents])
 
-  const handleBudget = useCallback((val: number) => {
+  const handleBudget = useCallback((val) => {
     setBudget(val)
   }, [setBudget])
 
-  function selectComp(type: ComponentType, comp: ComponentSpec) {
+  function selectComp(type, comp) {
     setComponents({ ...selectedComps, [type]: { ...comp, type } })
   }
 
@@ -51,7 +49,7 @@ export default function BuilderSection() {
   }
 
   function addBuildToCart() {
-    const items = Object.values(selectedComps).filter(Boolean) as (ComponentSpec & { type: ComponentType })[]
+    const items = Object.values(selectedComps).filter(Boolean)
     if (!items.length) { showToast('Selecteaza cel putin o componenta!'); return }
     const total = items.reduce((s, c) => s + c.price, 0)
     const desc = items.slice(0, 3).map(c => c.name).join(', ') + (items.length > 3 ? '...' : '')
@@ -59,7 +57,7 @@ export default function BuilderSection() {
     showToast(`Custom Build (${formatPrice(total)}) adaugat in cos!`)
   }
 
-  const items = Object.values(selectedComps).filter(Boolean) as (ComponentSpec & { type: ComponentType })[]
+  const items = Object.values(selectedComps).filter(Boolean)
   const total = items.reduce((s, c) => s + c.price, 0)
   const ratings = computeRatings(items)
   const progressPct = Math.min((total / budgetMax) * 100, 100)
@@ -68,13 +66,13 @@ export default function BuilderSection() {
     : 'linear-gradient(135deg,#8B00FF,#FF1493)'
   const remaining = budgetMax - total
 
-  function isOverBudget(type: ComponentType, comp: ComponentSpec): boolean {
+  function isOverBudget(type, comp) {
     const current = selectedComps[type]
     if (current?.name === comp.name) return false
     return comp.price > remaining + (current?.price ?? 0)
   }
 
-  function isVisible(type: ComponentType, comp: ComponentSpec): boolean {
+  function isVisible(type, comp) {
     return comp.price <= budgetMax || comp.price === 0
   }
 
@@ -160,7 +158,7 @@ export default function BuilderSection() {
                   items.map(c => (
                     <div key={c.type} className="summary-item">
                       <div className="si-left">
-                        <span className="si-cat">{typeLabels[c.type!]}</span>
+                        <span className="si-cat">{typeLabels[c.type]}</span>
                         <span className="si-name">{c.name}</span>
                       </div>
                       <span className="si-price">

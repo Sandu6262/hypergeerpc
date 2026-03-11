@@ -3,12 +3,9 @@
 import { useState } from 'react'
 import { Star, TrendingDown, TrendingUp, Zap } from 'lucide-react'
 import { prebuiltPCs } from '@/data/prebuiltPCs'
-import { PrebuiltPC } from '@/data/types'
 import PCCard from './PCCard'
 
-type Filter = 'all' | 'low' | 'mid' | 'high'
-
-const filterFns: Record<string, (pc: PrebuiltPC) => boolean> = {
+const filterFns = {
   low:  pc => pc.price < 14000,
   mid:  pc => pc.price >= 14000 && pc.price <= 38000,
   high: pc => pc.price > 38000,
@@ -22,7 +19,7 @@ const filterButtons = [
 ]
 
 export default function PrebuiltSection() {
-  const [filter, setFilter] = useState<Filter>('all')
+  const [filter, setFilter] = useState('all')
 
   const list = filter === 'all' ? prebuiltPCs : prebuiltPCs.filter(filterFns[filter])
 
@@ -37,7 +34,7 @@ export default function PrebuiltSection() {
               <button
                 key={id}
                 className={`filter-btn cursor-target${filter === id ? ' active' : ''}`}
-                onClick={() => setFilter(id as Filter)}
+                onClick={() => setFilter(id)}
               >
                 <Icon size={15} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
                 {label}

@@ -3,7 +3,7 @@
 // Each row: array of [width, colDelay] — colDelay drives the RGB wave offset
 const KEY_H = 24
 const GAP = 3
-const ROW_DEFS: Array<{ y: number; keys: Array<[number, number]> }> = [
+const ROW_DEFS = [
   // ESC + F-keys
   { y: 14, keys: [[26,0],[1,0],[26,1.4],[26,1.7],[26,2],[26,2.3],[1,0],[26,2.9],[26,3.2],[26,3.5],[26,3.8],[1,0],[26,4.4],[26,4.7],[26,5],[26,5.3]] },
   // Number row

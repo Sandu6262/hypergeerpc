@@ -3,16 +3,14 @@
 const KH = 24
 const G  = 2
 
-type Key = { label: string; w: number; delay: number }
-
-function row(keys: [string, number][], base = 0): Key[] {
+function row(keys, base = 0) {
   let col = 0
   return keys.map(([label, w]) => ({ label, w, delay: +(base + col++ * 0.15).toFixed(2) }))
 }
 
 // Keyboard centered at x=260 of viewBox (width=520), kb total width ~390
 const KB_X = 66
-const ROWS: { y: number; x: number; keys: Key[] }[] = [
+const ROWS = [
   { y: 302, x: KB_X, keys: row([['`',24],['1',24],['2',24],['3',24],['4',24],['5',24],['6',24],['7',24],['8',24],['9',24],['0',24],['-',24],['=',24],['⌫',40]], 0) },
   { y: 328, x: KB_X, keys: row([['TAB',36],['Q',24],['W',24],['E',24],['R',24],['T',24],['Y',24],['U',24],['I',24],['O',24],['P',24],['[',24],[']',24],['\\',36]], 0.1) },
   { y: 354, x: KB_X, keys: row([['CAPS',44],['A',24],['S',24],['D',24],['F',24],['G',24],['H',24],['J',24],['K',24],['L',24],[';',24],["'",24],['↵',44]], 0.2) },

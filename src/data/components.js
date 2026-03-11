@@ -1,6 +1,4 @@
-import { ComponentSpec, ComponentType } from './types'
-
-export const components: Record<ComponentType, ComponentSpec[]> = {
+export const components = {
   cpu: [
     { name: 'AMD Ryzen 5 5500 Tray',       price: 1799,  sc: { g: 50, p: 55, v: 95 } },
     { name: 'AMD Ryzen 5 5600 Tray',       price: 2489,  sc: { g: 58, p: 62, v: 90 } },
@@ -66,7 +64,7 @@ export const components: Record<ComponentType, ComponentSpec[]> = {
   ],
 }
 
-export const typeLabels: Record<string, string> = {
+export const typeLabels = {
   cpu: 'CPU',
   gpu: 'GPU',
   ram: 'RAM',

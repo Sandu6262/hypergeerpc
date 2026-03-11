@@ -2,24 +2,22 @@
 
 import { useEffect, useRef } from 'react'
 
-const COLORS = ['#EDB600', '#FFD740', '#FFFFFF', '#FFE680', '#B88A00', '#FFF5CC']
+const COLORS = ['#EDB600', '#FFCF3F', '#FFFFFF', '#FFE580', '#FFF0A0', '#ffffff']
 
-export default function HeroParticles() {
-  const ref = useRef<HTMLDivElement>(null)
+export default function BgParticles() {
+  const ref = useRef(null)
 
   useEffect(() => {
     const container = ref.current
     if (!container) return
-    const isMobile = window.matchMedia('(pointer: coarse)').matches
-    const count = isMobile ? 6 : 25
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < 90; i++) {
       const p = document.createElement('div')
       const size = Math.random() * 5 + 2
       const color = COLORS[Math.floor(Math.random() * COLORS.length)]
       const dur = 4 + Math.random() * 6
       const delay = Math.random() * 6
       p.style.cssText = `
-        position:absolute;
+        position:fixed;
         width:${size}px;height:${size}px;
         background:${color};
         border-radius:50%;
@@ -30,11 +28,12 @@ export default function HeroParticles() {
         opacity:${0.25 + Math.random() * 0.55};
         box-shadow:0 0 ${size * 2.5}px ${color},0 0 ${size * 5}px ${color}40;
         pointer-events:none;
+        z-index:0;
       `
       container.appendChild(p)
     }
     return () => { container.innerHTML = '' }
   }, [])
 
-  return <div ref={ref} className="hero-particles" suppressHydrationWarning />
+  return <div ref={ref} className="bg-particles-full" aria-hidden="true" suppressHydrationWarning />
 }

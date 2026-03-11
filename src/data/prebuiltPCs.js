@@ -1,6 +1,4 @@
-import { PrebuiltPC } from './types'
-
-export const prebuiltPCs: PrebuiltPC[] = [
+export const prebuiltPCs = [
   {
     id: 1, name: 'Starter Pack', cat: 'Gaming Entry-Level',
     price: 9500, level: 'low', badge: 'starter', badgeText: 'Buget Mic', emoji: '💻',

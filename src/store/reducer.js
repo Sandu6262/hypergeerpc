@@ -1,15 +1,4 @@
-import { CartItem, SelectedComps } from '@/data/types'
-
-export interface AppState {
-  cart: CartItem[]
-  selectedComps: SelectedComps
-  budgetMax: number
-  cartOpen: boolean
-  toastMessage: string
-  toastVisible: boolean
-}
-
-export const initialState: AppState = {
+export const initialState = {
   cart: [],
   selectedComps: {},
   budgetMax: 95000,
@@ -18,18 +7,7 @@ export const initialState: AppState = {
   toastVisible: false,
 }
 
-export type Action =
-  | { type: 'ADD_TO_CART'; payload: CartItem }
-  | { type: 'REMOVE_FROM_CART'; payload: number }
-  | { type: 'CLEAR_CART' }
-  | { type: 'SET_COMPONENTS'; payload: SelectedComps }
-  | { type: 'SET_BUDGET'; payload: number }
-  | { type: 'TOGGLE_CART' }
-  | { type: 'CLOSE_CART' }
-  | { type: 'SHOW_TOAST'; payload: string }
-  | { type: 'HIDE_TOAST' }
-
-export function appReducer(state: AppState, action: Action): AppState {
+export function appReducer(state, action) {
   switch (action.type) {
     case 'ADD_TO_CART':
       return { ...state, cart: [...state.cart, action.payload] }
