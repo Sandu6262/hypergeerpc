@@ -33,9 +33,57 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'HypergeeRPC - Calculatoare & PC Builder',
-  description: 'Cumpara calculatoare prefabricate sau construieste-l pe al tau. Componente premium, preturi accesibile, design RGB.',
+  metadataBase: new URL('https://sandu6262.github.io/hypergeerpc'),
+
+  title: {
+    default: 'HypergeeRPC - Calculatoare & PC Builder | Chisinau, Moldova',
+    template: '%s | HypergeeRPC',
+  },
+
+  description:
+    'Cumpara calculatoare prefabricate sau configureaza-l pe al tau. Gaming, productivitate, creare continut. AMD Ryzen, Intel Core, NVIDIA RTX. Garantie 2 ani. Chisinau, Moldova.',
+
+  keywords: [
+    'calculatoare Moldova', 'PC gaming Moldova', 'PC Builder Chisinau',
+    'calculatoare prefabricate', 'AMD Ryzen', 'NVIDIA RTX',
+    'calculatoare performanta', 'HypergeeRPC', 'cumpara calculator Moldova',
+  ],
+
+  alternates: {
+    canonical: 'https://sandu6262.github.io/hypergeerpc/',
+    languages: { ro: 'https://sandu6262.github.io/hypergeerpc/' },
+  },
+
+  openGraph: {
+    type: 'website',
+    locale: 'ro_MD',
+    url: 'https://sandu6262.github.io/hypergeerpc/',
+    siteName: 'HypergeeRPC',
+    title: 'HypergeeRPC - Calculatoare & PC Builder | Chisinau, Moldova',
+    description:
+      'Calculatoare de performanta pentru gaming si productivitate. AMD Ryzen, NVIDIA RTX. Garantie 2 ani.',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'HypergeeRPC' }],
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'HypergeeRPC - Calculatoare & PC Builder',
+    description: 'Calculatoare de performanta pentru gaming si productivitate. Garantie 2 ani.',
+    images: ['/og-image.jpg'],
+  },
+
   icons: { icon: `${BASE}/favicon.svg` },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
