@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Orbitron, Rajdhani } from 'next/font/google'
+import { Orbitron, Roboto } from 'next/font/google'
 import './globals.css'
 import { StoreProvider } from '@/store/StoreContext'
 import Navbar from '@/components/layout/Navbar'
@@ -17,10 +17,10 @@ const orbitron = Orbitron({
   display: 'swap',
 })
 
-const rajdhani = Rajdhani({
+const roboto = Roboto({
   subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  variable: '--font-rajdhani',
+  weight: ['400', '700', '900'],
+  variable: '--font-roboto',
   display: 'swap',
 })
 
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ro" className={`${orbitron.variable} ${rajdhani.variable}`}>
+    <html lang="ro" className={`${orbitron.variable} ${roboto.variable}`}>
       <body>
         <StoreProvider>
           <TargetCursor />

@@ -131,10 +131,10 @@ export function ParticleCard({ children, className = '', style }: ParticleCardPr
         `
         cardRef.current.appendChild(p)
         particlesRef.current.push(p)
-        gsap.fromTo(p, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: 'back.out(1.7)' })
-        gsap.to(p, { x: (Math.random() - 0.5) * 80, y: (Math.random() - 0.5) * 80, rotation: Math.random() * 360, duration: 2 + Math.random() * 2, ease: 'none', repeat: -1, yoyo: true })
-        gsap.to(p, { opacity: 0.3, duration: 1.5, ease: 'power2.inOut', repeat: -1, yoyo: true })
-      }, i * 100)
+        gsap.fromTo(p, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.7)' })
+        gsap.to(p, { x: (Math.random() - 0.5) * 80, y: (Math.random() - 0.5) * 80, rotation: Math.random() * 360, duration: 4 + Math.random() * 4, ease: 'none', repeat: -1, yoyo: true })
+        gsap.to(p, { opacity: 0.3, duration: 3, ease: 'power2.inOut', repeat: -1, yoyo: true })
+      }, i * 160)
       timeoutsRef.current.push(tid)
     }
   }, [])
@@ -159,7 +159,7 @@ export function ParticleCard({ children, className = '', style }: ParticleCardPr
       const x = e.clientX - rect.left
       const y = e.clientY - rect.top
       const cx = rect.width / 2, cy = rect.height / 2
-      gsap.to(el, { rotateX: ((y - cy) / cy) * -8, rotateY: ((x - cx) / cx) * 8, duration: 0.1, ease: 'power2.out', transformPerspective: 1000 })
+      gsap.to(el, { rotateX: ((y - cy) / cy) * -3, rotateY: ((x - cx) / cx) * 3, duration: 0.25, ease: 'power2.out', transformPerspective: 1000 })
       magnetAnim.current = gsap.to(el, { x: (x - cx) * 0.04, y: (y - cy) * 0.04, duration: 0.3, ease: 'power2.out' })
     }
     const onClick = (e: MouseEvent) => {
@@ -169,7 +169,7 @@ export function ParticleCard({ children, className = '', style }: ParticleCardPr
       const ripple = document.createElement('div')
       ripple.style.cssText = `position:absolute;width:${maxD * 2}px;height:${maxD * 2}px;border-radius:50%;background:radial-gradient(circle,rgba(${GLOW_COLOR},0.35) 0%,rgba(${GLOW_COLOR},0.15) 30%,transparent 70%);left:${x - maxD}px;top:${y - maxD}px;pointer-events:none;z-index:1000;`
       el.appendChild(ripple)
-      gsap.fromTo(ripple, { scale: 0, opacity: 1 }, { scale: 1, opacity: 0, duration: 0.7, ease: 'power2.out', onComplete: () => ripple.remove() })
+      gsap.fromTo(ripple, { scale: 0, opacity: 1 }, { scale: 1, opacity: 0, duration: 1.2, ease: 'power2.out', onComplete: () => ripple.remove() })
     }
 
     el.addEventListener('mouseenter', onEnter)

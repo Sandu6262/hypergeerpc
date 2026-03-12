@@ -35,7 +35,7 @@ html { scroll-behavior: smooth; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 body {
-  font-family: var(--font-rajdhani, 'Rajdhani', 'Segoe UI', sans-serif);
+  font-family: var(--font-roboto, 'Roboto', 'Segoe UI', sans-serif);
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
@@ -238,7 +238,13 @@ body {
   letter-spacing: 3px;
 }
 .logo-accent { color: var(--teal); }
-.nav-links { display: flex; gap: 28px; }
+.nav-links {
+  display: flex;
+  gap: 28px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .nav-link {
   color: var(--muted);
   text-decoration: none;
@@ -267,7 +273,7 @@ body {
   border-radius: 4px;
   color: var(--teal);
   font-size: 14px;
-  font-family: var(--font-rajdhani, 'Rajdhani', sans-serif);
+  font-family: var(--font-roboto, 'Roboto', sans-serif);
   font-weight: 700;
   cursor: pointer;
   letter-spacing: 1px;
@@ -390,7 +396,7 @@ body {
   animation: pulse 3s ease-in-out infinite;
 }
 .hero-title {
-  font-family: var(--font-orbitron, 'Orbitron', monospace);
+  font-family: var(--font-roboto, 'Roboto', sans-serif);
   font-size: 78px;
   font-weight: 900;
   line-height: 1.06;
@@ -464,7 +470,7 @@ body {
   text-decoration: none;
   font-size: 15px;
   font-weight: 700;
-  font-family: var(--font-rajdhani, 'Rajdhani', sans-serif);
+  font-family: var(--font-roboto, 'Roboto', sans-serif);
   letter-spacing: 1.5px;
   border: 1px solid rgba(237,182,0,.4);
   cursor: pointer;
@@ -488,7 +494,7 @@ body {
   text-decoration: none;
   font-size: 15px;
   font-weight: 700;
-  font-family: var(--font-rajdhani, 'Rajdhani', sans-serif);
+  font-family: var(--font-roboto, 'Roboto', sans-serif);
   letter-spacing: 1.5px;
   border: 1px solid rgba(237,182,0,.4);
   cursor: pointer;
@@ -520,7 +526,7 @@ body {
   opacity: .8;
 }
 .section-title {
-  font-family: var(--font-orbitron, 'Orbitron', monospace);
+  font-family: var(--font-roboto, 'Roboto', sans-serif);
   font-size: 72px;
   font-weight: 900;
   text-align: center;
@@ -552,7 +558,7 @@ body {
   color: var(--muted);
   font-size: 14px;
   font-weight: 700;
-  font-family: var(--font-rajdhani, 'Rajdhani', sans-serif);
+  font-family: var(--font-roboto, 'Roboto', sans-serif);
   cursor: pointer;
   transition: all .25s;
   letter-spacing: 1px;
@@ -744,7 +750,7 @@ body {
   padding: 9px 16px;
   border-radius: 3px;
   color: var(--teal);
-  font-family: var(--font-rajdhani, 'Rajdhani', sans-serif);
+  font-family: var(--font-roboto, 'Roboto', sans-serif);
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
@@ -834,7 +840,7 @@ body {
   border-radius: 4px;
   cursor: pointer;
   transition: all .2s;
-  font-family: var(--font-rajdhani, 'Rajdhani', sans-serif);
+  font-family: var(--font-roboto, 'Roboto', sans-serif);
   position: relative;
 }
 .comp-opt:hover {
@@ -975,7 +981,7 @@ body {
   background: var(--teal);
   border: none; border-radius: 3px;
   color: var(--bg);
-  font-family: var(--font-rajdhani, 'Rajdhani', sans-serif);
+  font-family: var(--font-roboto, 'Roboto', sans-serif);
   font-size: 16px; font-weight: 700;
   cursor: pointer; letter-spacing: 2px;
   text-transform: uppercase;
@@ -1060,7 +1066,7 @@ body {
   border: 1px solid var(--teal);
   color: var(--teal); padding: 12px 26px;
   border-radius: 3px;
-  font-family: var(--font-rajdhani, 'Rajdhani', sans-serif);
+  font-family: var(--font-roboto, 'Roboto', sans-serif);
   font-size: 15px; font-weight: 700;
   z-index: 9999;
   letter-spacing: 1px;
@@ -1178,4 +1184,231 @@ body {
   .hero-title { font-size: 28px; }
   .section-title { font-size: 20px; }
   .filter-btn { padding: 7px 10px; font-size: 12px; }
+}
+
+/* ============================================================
+   DE CE NOI
+   ============================================================ */
+.why-us-section {
+  padding: 80px 0;
+}
+.why-us-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.why-card {
+  background: var(--card);
+  border: 1px solid rgba(237, 182, 0, 0.15);
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.why-card:hover {
+  border-color: var(--teal);
+  transform: translateY(-4px);
+}
+.why-icon {
+  color: var(--teal);
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+}
+.why-title {
+  font-family: var(--font-orbitron), sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+  letter-spacing: 0.03em;
+}
+.why-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   TESTIMONIALE
+   ============================================================ */
+.testimonials-section {
+  padding: 80px 0;
+  background: rgba(255,255,255,0.02);
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.testimonial-card {
+  background: var(--card);
+  border: 1px solid rgba(237, 182, 0, 0.12);
+  border-radius: 12px;
+  padding: 32px 28px 28px;
+  position: relative;
+  transition: border-color 0.2s;
+}
+.testimonial-card:hover {
+  border-color: var(--teal);
+}
+.testimonial-quote {
+  font-size: 64px;
+  line-height: 1;
+  color: var(--teal);
+  font-family: Georgia, serif;
+  margin-bottom: 12px;
+  opacity: 0.8;
+}
+.testimonial-text {
+  font-size: 15px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+.testimonial-stars {
+  color: var(--teal);
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+.testimonial-name {
+  font-family: var(--font-orbitron), sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   DESPRE NOI
+   ============================================================ */
+.about-section {
+  padding: 80px 0;
+}
+.about-inner {
+  display: flex;
+  gap: 64px;
+  align-items: center;
+}
+.about-text {
+  flex: 1;
+}
+.about-text .section-title {
+  text-align: left;
+  margin-bottom: 20px;
+}
+.about-desc {
+  font-size: 16px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.75;
+  max-width: 560px;
+}
+.about-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 200px;
+}
+.about-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-left: 3px solid var(--teal);
+  padding-left: 20px;
+}
+.about-stat-value {
+  font-family: var(--font-orbitron), sans-serif;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1;
+}
+.about-stat-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq-section {
+  padding: 80px 0;
+  background: rgba(255,255,255,0.02);
+}
+.faq-list {
+  margin-top: 48px;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.faq-item {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.faq-item:first-child {
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #fff;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  text-align: left;
+  padding: 22px 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  transition: color 0.15s;
+}
+.faq-question:hover {
+  color: var(--teal);
+}
+.faq-chevron {
+  flex-shrink: 0;
+  color: var(--teal);
+  transition: transform 0.25s ease;
+}
+.faq-item--open .faq-chevron {
+  transform: rotate(180deg);
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 8px;
+}
+.faq-item--open .faq-answer {
+  max-height: 200px;
+  padding: 0 8px 20px;
+}
+.faq-answer p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   RESPONSIVE — secțiuni noi
+   ============================================================ */
+@media (max-width: 900px) {
+  .why-us-grid { grid-template-columns: repeat(2, 1fr); }
+  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-inner { flex-direction: column; gap: 40px; }
+  .about-stats { flex-direction: row; flex-wrap: wrap; gap: 20px; }
+  .about-text .section-title { text-align: center; }
+  .about-desc { max-width: 100%; text-align: center; }
+}
+@media (max-width: 700px) {
+  .why-us-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .about-stats { flex-direction: column; }
+  .faq-question { font-size: 15px; padding: 18px 4px; }
 }
