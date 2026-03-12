@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sandu6262.github.io/hypergeerpc/sitemap.xml
