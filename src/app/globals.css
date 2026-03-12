@@ -1,9 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* ===================================================
    HypergeeRPC — DARK GOLD Design
    Yellow #EDB600 · White #FFFFFF · Black #0D0D0D
    =================================================== */
 
 :root {
+  /* shadcn/Tailwind tokens */
+  --background: 0 0% 0%;
+  --foreground: 43 100% 50%;
+  --border: 43 60% 25%;
+  --input: 43 60% 25%;
+  --ring: 43 100% 46%;
+  --primary: 43 100% 46%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 7%;
+  --secondary-foreground: 43 100% 46%;
+  --destructive: 14 100% 60%;
+  --destructive-foreground: 0 0% 0%;
+  --accent: 0 0% 7%;
+  --accent-foreground: 43 100% 46%;
+
   --teal:     #EDB600;
   --teal-l:   #FFCF3F;
   --teal-d:   #B88F00;

@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Orbitron, Roboto } from 'next/font/google'
 import './globals.css'
 import { StoreProvider } from '@/store/StoreContext'
-import Navbar from '@/components/layout/Navbar'
+import { Header } from '@/components/ui/header-2'
 import Footer from '@/components/layout/Footer'
 import dynamic from 'next/dynamic'
 import CartSidebar from '@/components/cart/CartSidebar'
@@ -93,7 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StoreProvider>
           <TargetCursor />
           <GalaxyBg />
-          <Navbar />
+          <Header />
           <CartSidebar />
           {children}
           <Toast />
